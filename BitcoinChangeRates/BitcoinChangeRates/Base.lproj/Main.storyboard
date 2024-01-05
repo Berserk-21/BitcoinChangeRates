@@ -1,24 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3vv-sS-PYr">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Navigation Controller-->
+        <scene sceneID="mJB-w6-S30">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <navigationController id="3vv-sS-PYr" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vji-5J-EDG">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="F6T-49-Feo" kind="relationship" relationship="rootViewController" id="kPv-Cp-rTt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XUQ-sl-2QB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-766" y="-81"/>
+        </scene>
+        <!--Change Rates View Controller-->
+        <scene sceneID="i4V-PV-EDK">
+            <objects>
+                <viewController id="F6T-49-Feo" customClass="ChangeRatesViewController" customModule="BitcoinChangeRates" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZaG-Fc-BF1">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RBu-se-VQo">
+                                <rect key="frame" x="0.0" y="103" width="393" height="108.33333333333331"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwD-7b-q5I">
+                                        <rect key="frame" x="16" y="16" width="322.33333333333331" height="76.333333333333329"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="IwD-7b-q5I" secondAttribute="height" multiplier="325:77" id="oGW-tB-raW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="64"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₿" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6m-bM-xEy">
+                                        <rect key="frame" x="346.33333333333331" y="0.0" width="30.666666666666686" height="57.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="48"/>
+                                        <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="W6m-bM-xEy" firstAttribute="top" secondItem="RBu-se-VQo" secondAttribute="top" id="5fu-ec-7nV"/>
+                                    <constraint firstItem="W6m-bM-xEy" firstAttribute="leading" secondItem="IwD-7b-q5I" secondAttribute="trailing" constant="8" symbolic="YES" id="Gsa-Dc-anf"/>
+                                    <constraint firstAttribute="bottom" secondItem="IwD-7b-q5I" secondAttribute="bottom" constant="16" id="MYz-wg-UdH"/>
+                                    <constraint firstAttribute="trailing" secondItem="W6m-bM-xEy" secondAttribute="trailing" constant="16" id="oG1-CW-bG4"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jsI-jH-AXm">
+                                <rect key="frame" x="0.0" y="211.33333333333331" width="393" height="606.66666666666674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChangeRatesTableViewCell" id="ABq-cT-IIo" customClass="ChangeRatesTableViewCell" customModule="BitcoinChangeRates" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ABq-cT-IIo" id="YK1-VG-RnW">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="F6T-49-Feo" id="fR0-zz-f3N"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IAs-ZG-YPh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IAs-ZG-YPh" firstAttribute="trailing" secondItem="RBu-se-VQo" secondAttribute="trailing" id="0D3-SG-8Wm"/>
+                            <constraint firstItem="IwD-7b-q5I" firstAttribute="top" secondItem="IAs-ZG-YPh" secondAttribute="top" constant="16" id="9oh-zd-ck7"/>
+                            <constraint firstItem="IAs-ZG-YPh" firstAttribute="trailing" secondItem="jsI-jH-AXm" secondAttribute="trailing" id="PA8-lm-8Eq"/>
+                            <constraint firstItem="RBu-se-VQo" firstAttribute="leading" secondItem="IAs-ZG-YPh" secondAttribute="leading" id="Pwu-ty-6NS"/>
+                            <constraint firstItem="jsI-jH-AXm" firstAttribute="leading" secondItem="IAs-ZG-YPh" secondAttribute="leading" id="TnC-pk-ziL"/>
+                            <constraint firstItem="RBu-se-VQo" firstAttribute="top" secondItem="IAs-ZG-YPh" secondAttribute="top" id="b4N-fU-ema"/>
+                            <constraint firstItem="jsI-jH-AXm" firstAttribute="top" secondItem="RBu-se-VQo" secondAttribute="bottom" id="cLH-lP-Zdq"/>
+                            <constraint firstItem="IwD-7b-q5I" firstAttribute="leading" secondItem="IAs-ZG-YPh" secondAttribute="leading" constant="16" id="ifV-Tp-hTZ"/>
+                            <constraint firstItem="IAs-ZG-YPh" firstAttribute="bottom" secondItem="jsI-jH-AXm" secondAttribute="bottom" id="kMj-77-xis"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="BQe-7T-jDG"/>
+                    <connections>
+                        <outlet property="bitcoinAmountLabel" destination="IwD-7b-q5I" id="uEI-hE-xJm"/>
+                        <outlet property="bitcoinSymbolLabel" destination="W6m-bM-xEy" id="jH0-nH-9v5"/>
+                        <outlet property="tableView" destination="jsI-jH-AXm" id="BMQ-ez-PT4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BIN-tK-EEB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="23.664122137404579" y="-82.394366197183103"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
