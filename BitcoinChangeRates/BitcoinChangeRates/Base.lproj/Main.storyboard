@@ -114,6 +114,7 @@
                                             <constraint firstAttribute="trailing" secondItem="o1u-37-UGY" secondAttribute="trailing" constant="20" id="dgg-Ze-fzu"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="changeRate" destination="o1u-37-UGY" id="oMM-Rb-wU4"/>
                                             <outlet property="flagImageView" destination="A8Z-dK-d3K" id="TX7-A9-bpm"/>
                                             <outlet property="subtitleLabel" destination="5dP-B2-7hN" id="3rm-IA-13P"/>
                                             <outlet property="titleLabel" destination="pJ8-Yp-Kq0" id="bho-0n-eZw"/>
