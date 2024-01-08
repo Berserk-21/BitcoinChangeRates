@@ -21,6 +21,7 @@ class ChangeRatesViewModel {
         let task = session.dataTask(with: urlRequest) { data, response, error in
             
             if let err = error {
+                print("There was an error with the dataTask: \(err)")
                 completionHandler(false)
             }
             
