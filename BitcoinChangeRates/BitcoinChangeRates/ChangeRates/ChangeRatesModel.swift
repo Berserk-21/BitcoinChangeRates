@@ -16,7 +16,7 @@ struct ChangeRatesModel: Decodable {
         var rates: [ChangeRatesSubModel] = []
 
         for element in bitcoin {
-            let rate = ChangeRatesSubModel(name: "", isocode: element.key, localeId: "", changeRate: element.value)
+            let rate = ChangeRatesSubModel(name: "Currency Name", isocode: element.key, localeId: "Locale Identifier", changeRate: element.value)
             rates.append(rate)
         }            
         
