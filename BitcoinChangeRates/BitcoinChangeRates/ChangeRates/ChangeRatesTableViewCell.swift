@@ -16,7 +16,7 @@ final class ChangeRatesTableViewCell: UITableViewCell {
     @IBOutlet weak private var flagImageView: UIImageView!
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var subtitleLabel: UILabel!
-    @IBOutlet weak private var changeRate: UILabel!
+    @IBOutlet weak private var valueLabel: UILabel!
     
     // MARK: - Life Cycle
     
@@ -37,6 +37,9 @@ final class ChangeRatesTableViewCell: UITableViewCell {
         flagImageView.image = UIImage(named: model.isocode.uppercased())
         titleLabel.text = model.isocode.uppercased()
         subtitleLabel.text = model.name.capitalized
-        changeRate.text = "\(model.changeRate)"
+        
+        if let changeRate = model.changeRate {
+            self.valueLabel.text = "\(changeRate)"
+        }
     }
 }

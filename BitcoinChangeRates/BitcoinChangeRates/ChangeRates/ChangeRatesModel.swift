@@ -28,5 +28,5 @@ struct ChangeRatesSubModel: Decodable {
     let name: String
     let isocode: String
     let localeId: String
-    let changeRate: Double
+    var changeRate: Double?
 }
