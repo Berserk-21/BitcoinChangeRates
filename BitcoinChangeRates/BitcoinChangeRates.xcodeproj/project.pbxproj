@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2C3491B42B48476B00E4C402 /* ChangeRatesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3491B32B48476B00E4C402 /* ChangeRatesTableViewCell.swift */; };
+		2C3491B62B48655400E4C402 /* ChangeRatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3491B52B48655400E4C402 /* ChangeRatesViewModel.swift */; };
+		2C3491B82B486A7300E4C402 /* ChangeRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3491B72B486A7300E4C402 /* ChangeRatesModel.swift */; };
+		2C3491BA2B486B2A00E4C402 /* available_currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C3491B92B486B2A00E4C402 /* available_currencies.json */; };
 		2C8CF2872B483F7E0084F940 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8CF2862B483F7E0084F940 /* AppDelegate.swift */; };
 		2C8CF2892B483F7E0084F940 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8CF2882B483F7E0084F940 /* SceneDelegate.swift */; };
 		2C8CF28E2B483F7E0084F940 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C8CF28C2B483F7E0084F940 /* Main.storyboard */; };
@@ -18,6 +21,9 @@
 
 /* Begin PBXFileReference section */
 		2C3491B32B48476B00E4C402 /* ChangeRatesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRatesTableViewCell.swift; sourceTree = "<group>"; };
+		2C3491B52B48655400E4C402 /* ChangeRatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRatesViewModel.swift; sourceTree = "<group>"; };
+		2C3491B72B486A7300E4C402 /* ChangeRatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRatesModel.swift; sourceTree = "<group>"; };
+		2C3491B92B486B2A00E4C402 /* available_currencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = available_currencies.json; sourceTree = "<group>"; };
 		2C8CF2832B483F7E0084F940 /* BitcoinChangeRates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitcoinChangeRates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8CF2862B483F7E0084F940 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C8CF2882B483F7E0084F940 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +50,8 @@
 			children = (
 				2C8CF29A2B4843AA0084F940 /* ChangeRatesViewController.swift */,
 				2C3491B32B48476B00E4C402 /* ChangeRatesTableViewCell.swift */,
+				2C3491B52B48655400E4C402 /* ChangeRatesViewModel.swift */,
+				2C3491B72B486A7300E4C402 /* ChangeRatesModel.swift */,
 			);
 			path = ChangeRates;
 			sourceTree = "<group>";
@@ -73,6 +81,7 @@
 				2C8CF28C2B483F7E0084F940 /* Main.storyboard */,
 				2C8CF28F2B483F7F0084F940 /* Assets.xcassets */,
 				2C8CF2912B483F7F0084F940 /* LaunchScreen.storyboard */,
+				2C3491B92B486B2A00E4C402 /* available_currencies.json */,
 				2C8CF2942B483F7F0084F940 /* Info.plist */,
 			);
 			path = BitcoinChangeRates;
@@ -136,6 +145,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C3491BA2B486B2A00E4C402 /* available_currencies.json in Resources */,
 				2C8CF2932B483F7F0084F940 /* LaunchScreen.storyboard in Resources */,
 				2C8CF2902B483F7F0084F940 /* Assets.xcassets in Resources */,
 				2C8CF28E2B483F7E0084F940 /* Main.storyboard in Resources */,
@@ -152,6 +162,8 @@
 				2C8CF2872B483F7E0084F940 /* AppDelegate.swift in Sources */,
 				2C3491B42B48476B00E4C402 /* ChangeRatesTableViewCell.swift in Sources */,
 				2C8CF29B2B4843AA0084F940 /* ChangeRatesViewController.swift in Sources */,
+				2C3491B82B486A7300E4C402 /* ChangeRatesModel.swift in Sources */,
+				2C3491B62B48655400E4C402 /* ChangeRatesViewModel.swift in Sources */,
 				2C8CF2892B483F7E0084F940 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,8 @@ import UIKit
 
 final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
+    var changeRateViewModel: ChangeRatesViewModel?
+    
     // MARK: - Properties
     
     @IBOutlet weak private var bitcoinAmountLabel: UILabel!
@@ -22,6 +24,8 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         
         setupLayout()
+        
+        fetchData()
     }
     
     // MARK: - Setup Layout
@@ -40,19 +44,39 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         bitcoinSymbolLabel.textColor = .orange
     }
     
+    // MARK: - Custom Methods
+    
+    private func fetchData() {
+        
+        changeRateViewModel = ChangeRatesViewModel()
+        
+        changeRateViewModel?.fetchData(completionHandler: { [weak self] success in
+            if success {
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            } else {
+                // Afficher un layout d'erreur/reload
+            }
+        })
+    }
+    
     // MARK: - UITableView DataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChangeRatesTableViewCell.identifier, for: indexPath) as? ChangeRatesTableViewCell else { return UITableViewCell() }
         
-        cell.configureCell(at: indexPath)
+        if let model = changeRateViewModel?.rates[indexPath.row] {
+            cell.configureCell(at: indexPath, model: model)
+        }
+        
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 3
+        return changeRateViewModel?.rates.count ?? 0
     }
 }

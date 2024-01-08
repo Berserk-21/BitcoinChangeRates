@@ -27,8 +27,8 @@ final class ChangeRatesTableViewCell: UITableViewCell {
     
     // MARK: - Custom Methods
     
-    func configureCell(at indexPath: IndexPath) {
+    func configureCell(at indexPath: IndexPath, model: ChangeRatesSubModel) {
         
-        textLabel?.text = "\(indexPath)"
+        textLabel?.text = model.isocode.uppercased()
     }
 }
