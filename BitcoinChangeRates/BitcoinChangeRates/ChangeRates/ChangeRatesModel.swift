@@ -7,17 +7,6 @@
 
 import Foundation
 
-struct BitcoinPricesModel: Decodable {
-    
-    let bitcoin: [String: Double]
-}
-
-struct CurrencyModel: Decodable {
-    let name: String
-    let isocode: String
-    let localeId: String
-}
-
 struct ChangeRatesModel {
     
     let name: String
@@ -31,4 +20,15 @@ struct ChangeRatesModel {
         self.localeId = localeId
         self.price = price
     }
+}
+
+struct BitcoinPricesModel: Decodable {
+    
+    let bitcoin: [String: Double]
+}
+
+struct CurrencyModel: Decodable {
+    let name: String
+    let isocode: String
+    let localeId: String
 }
