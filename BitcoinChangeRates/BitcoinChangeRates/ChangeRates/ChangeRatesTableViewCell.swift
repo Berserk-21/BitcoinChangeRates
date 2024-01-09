@@ -38,8 +38,8 @@ final class ChangeRatesTableViewCell: UITableViewCell {
         titleLabel.text = model.isocode.uppercased()
         subtitleLabel.text = model.name.capitalized
         
-        if let changeRate = model.changeRate {
-            self.valueLabel.text = "\(changeRate)"
+        if let string = CustomNumberFormatter.shared.getStringFor(model: model) {
+            self.valueLabel.text = string
         }
     }
 }
