@@ -7,9 +7,12 @@
 
 import Foundation
 
-class ChangeRatesViewModel {
+final class ChangeRatesViewModel {
     
-    var finalRates: [ChangeRatesSubModel] = []
+    var changeRates: [ChangeRatesModel] = []
+    
+    private var bitcoinPrices: BitcoinPricesModel?
+    private var currencies: [CurrencyModel]?
     
     func fetchData(completionHandler: @escaping (Bool) -> ()) {
         
@@ -30,29 +33,38 @@ class ChangeRatesViewModel {
             guard let unwrappedData = data else { return }
             
             do {
-                let changeRatesModel = try JSONDecoder().decode(ChangeRatesModel.self, from: unwrappedData)
-                
-                self.updateLocalData(with: changeRatesModel)
-                
+                self.bitcoinPrices = try JSONDecoder().decode(BitcoinPricesModel.self, from: unwrappedData)
+                self.prepareChangeRates()
                 completionHandler(true)
             } catch {
-                completionHandler(false)
                 print(error)
+                completionHandler(false)
             }
         }
         
         task.resume()
     }
     
-    private func updateLocalData(with model: ChangeRatesModel) {
+    private func prepareChangeRates() {
         
-        model.changeRates.forEach { cloudElement in
+        guard let unwrappedCurrencies = currencies else { return }
+        guard let unwrappedBitcoinPrices = bitcoinPrices else { return }
+        
+        var changeRates: [ChangeRatesModel] = []
+        
+        unwrappedBitcoinPrices.bitcoin.forEach { element in
             
-            if let index = self.finalRates.firstIndex(where: { $0.isocode == cloudElement.isocode }) {
+            let isocode = element.key
+            let price = element.value
+            
+            if let currency = unwrappedCurrencies.first(where: { $0.isocode == isocode }) {
                 
-                self.finalRates[index].changeRate = cloudElement.changeRate
+                let changeRate = ChangeRatesModel(name: currency.name, isocode: currency.isocode, localeId: currency.localeId, price: price)
+                changeRates.append(changeRate)
             }
         }
+        
+        self.changeRates = changeRates
     }
     
     private func getUrl() -> URL? {
@@ -70,9 +82,9 @@ class ChangeRatesViewModel {
         
         do {
             let data = try Data(contentsOf: url)
-            let changeRates = try JSONDecoder().decode([ChangeRatesSubModel].self, from: data)
+            let currencies = try JSONDecoder().decode([CurrencyModel].self, from: data)
             
-            self.finalRates = changeRates
+            self.currencies = currencies
             
         } catch {
             print(error)

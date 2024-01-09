@@ -29,15 +29,15 @@ final class CustomNumberFormatter: NSObject {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func getStringFor(model: ChangeRatesSubModel) -> String? {
+    func getStringFor(model: ChangeRatesModel) -> String? {
         
-        guard let double = model.changeRate else { return "unknown" }
+        let price = model.price
         
         let localeIdentifier = model.localeId
         
         priceFormatter.locale = Locale(identifier: localeIdentifier)
         
-        let string = priceFormatter.string(from: NSNumber(floatLiteral: double))
+        let string = priceFormatter.string(from: NSNumber(floatLiteral: price))
         
         return string
     }
