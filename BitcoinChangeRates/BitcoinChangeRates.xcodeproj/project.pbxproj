@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C143FCB2B4D885F00E823F6 /* CustomNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C143FCA2B4D885F00E823F6 /* CustomNumberFormatter.swift */; };
-		2C143FDF2B4D92CB00E823F6 /* changeRates.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C143FDE2B4D92CB00E823F6 /* changeRates.json */; };
+		2C143FDF2B4D92CB00E823F6 /* bitcoinPrices.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C143FDE2B4D92CB00E823F6 /* bitcoinPrices.json */; };
 		2C143FE12B4D9B1300E823F6 /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C143FE02B4D9B1300E823F6 /* currencies.json */; };
 		2C143FE52B4D9BA900E823F6 /* CurrenciesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C143FE42B4D9BA900E823F6 /* CurrenciesTests.swift */; };
 		2C143FE82B4D9BEC00E823F6 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C143FE72B4D9BEC00E823F6 /* XCTestCase.swift */; };
@@ -22,6 +22,7 @@
 		2C8CF2902B483F7F0084F940 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C8CF28F2B483F7F0084F940 /* Assets.xcassets */; };
 		2C8CF2932B483F7F0084F940 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C8CF2912B483F7F0084F940 /* LaunchScreen.storyboard */; };
 		2C8CF29B2B4843AA0084F940 /* ChangeRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8CF29A2B4843AA0084F940 /* ChangeRatesViewController.swift */; };
+		2CC4F3582B4DC7840011AF00 /* BitcoinPricesModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4F3572B4DC7840011AF00 /* BitcoinPricesModelTests.swift */; };
 		2CEDCC272B4C2BC400A864C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEDCC262B4C2BC400A864C8 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +39,7 @@
 /* Begin PBXFileReference section */
 		2C143FCA2B4D885F00E823F6 /* CustomNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNumberFormatter.swift; sourceTree = "<group>"; };
 		2C143FD12B4D8D7600E823F6 /* BitcoinChangeRatesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitcoinChangeRatesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C143FDE2B4D92CB00E823F6 /* changeRates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = changeRates.json; sourceTree = "<group>"; };
+		2C143FDE2B4D92CB00E823F6 /* bitcoinPrices.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bitcoinPrices.json; sourceTree = "<group>"; };
 		2C143FE02B4D9B1300E823F6 /* currencies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = currencies.json; sourceTree = "<group>"; };
 		2C143FE42B4D9BA900E823F6 /* CurrenciesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesTests.swift; sourceTree = "<group>"; };
 		2C143FE72B4D9BEC00E823F6 /* XCTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
@@ -54,6 +55,7 @@
 		2C8CF2922B483F7F0084F940 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C8CF2942B483F7F0084F940 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C8CF29A2B4843AA0084F940 /* ChangeRatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRatesViewController.swift; sourceTree = "<group>"; };
+		2CC4F3572B4DC7840011AF00 /* BitcoinPricesModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinPricesModelTests.swift; sourceTree = "<group>"; };
 		2CEDCC262B4C2BC400A864C8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,7 +98,7 @@
 		2C143FDA2B4D919500E823F6 /* Mockup */ = {
 			isa = PBXGroup;
 			children = (
-				2C143FDE2B4D92CB00E823F6 /* changeRates.json */,
+				2C143FDE2B4D92CB00E823F6 /* bitcoinPrices.json */,
 				2C143FE02B4D9B1300E823F6 /* currencies.json */,
 			);
 			path = Mockup;
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				2C143FE42B4D9BA900E823F6 /* CurrenciesTests.swift */,
+				2CC4F3572B4DC7840011AF00 /* BitcoinPricesModelTests.swift */,
 			);
 			path = "Test Cases";
 			sourceTree = "<group>";
@@ -245,7 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C143FDF2B4D92CB00E823F6 /* changeRates.json in Resources */,
+				2C143FDF2B4D92CB00E823F6 /* bitcoinPrices.json in Resources */,
 				2C143FE12B4D9B1300E823F6 /* currencies.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CC4F3582B4DC7840011AF00 /* BitcoinPricesModelTests.swift in Sources */,
 				2C143FE82B4D9BEC00E823F6 /* XCTestCase.swift in Sources */,
 				2C143FE52B4D9BA900E823F6 /* CurrenciesTests.swift in Sources */,
 			);
