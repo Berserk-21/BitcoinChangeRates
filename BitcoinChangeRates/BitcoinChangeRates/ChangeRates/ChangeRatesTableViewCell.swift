@@ -13,6 +13,11 @@ final class ChangeRatesTableViewCell: UITableViewCell {
     
     static let identifier: String = "ChangeRatesTableViewCell"
     
+    @IBOutlet weak private var flagImageView: UIImageView!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var subtitleLabel: UILabel!
+    @IBOutlet weak private var valueLabel: UILabel!
+    
     // MARK: - Life Cycle
     
     override func awakeFromNib() {
@@ -27,8 +32,14 @@ final class ChangeRatesTableViewCell: UITableViewCell {
     
     // MARK: - Custom Methods
     
-    func configureCell(at indexPath: IndexPath) {
+    func configureCell(with model: ChangeRatesSubModel) {
         
-        textLabel?.text = "\(indexPath)"
+        flagImageView.image = UIImage(named: model.isocode.uppercased())
+        titleLabel.text = model.isocode.uppercased()
+        subtitleLabel.text = model.name.capitalized
+        
+        if let changeRate = model.changeRate {
+            self.valueLabel.text = "\(changeRate)"
+        }
     }
 }
