@@ -67,7 +67,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChangeRatesTableViewCell.identifier, for: indexPath) as? ChangeRatesTableViewCell else { return UITableViewCell() }
         
-        if let model = changeRateViewModel?.finalRates[indexPath.row] {
+        if let model = changeRateViewModel?.changeRates[indexPath.row] {
             cell.configureCell(with: model)
         }
         
@@ -76,6 +76,6 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return changeRateViewModel?.finalRates.count ?? 0
+        return changeRateViewModel?.changeRates.count ?? 0
     }
 }

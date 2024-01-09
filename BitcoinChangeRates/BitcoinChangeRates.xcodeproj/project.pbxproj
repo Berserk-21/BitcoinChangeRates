@@ -8,9 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		2C143FCB2B4D885F00E823F6 /* CustomNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C143FCA2B4D885F00E823F6 /* CustomNumberFormatter.swift */; };
+		2C143FD42B4D8D7600E823F6 /* BitcoinChangeRatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C143FD32B4D8D7600E823F6 /* BitcoinChangeRatesTests.swift */; };
+		2C143FDF2B4D92CB00E823F6 /* changeRates.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C143FDE2B4D92CB00E823F6 /* changeRates.json */; };
+		2C143FE12B4D9B1300E823F6 /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C143FE02B4D9B1300E823F6 /* currencies.json */; };
+		2C143FE52B4D9BA900E823F6 /* CurrenciesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C143FE42B4D9BA900E823F6 /* CurrenciesTests.swift */; };
+		2C143FE82B4D9BEC00E823F6 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C143FE72B4D9BEC00E823F6 /* XCTestCase.swift */; };
 		2C3491B42B48476B00E4C402 /* ChangeRatesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3491B32B48476B00E4C402 /* ChangeRatesTableViewCell.swift */; };
 		2C3491B62B48655400E4C402 /* ChangeRatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3491B52B48655400E4C402 /* ChangeRatesViewModel.swift */; };
-		2C3491B82B486A7300E4C402 /* ChangeRatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3491B72B486A7300E4C402 /* ChangeRatesModel.swift */; };
+		2C3491B82B486A7300E4C402 /* BitcoinPricesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3491B72B486A7300E4C402 /* BitcoinPricesModel.swift */; };
 		2C3491BA2B486B2A00E4C402 /* available_currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C3491B92B486B2A00E4C402 /* available_currencies.json */; };
 		2C8CF2872B483F7E0084F940 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8CF2862B483F7E0084F940 /* AppDelegate.swift */; };
 		2C8CF2892B483F7E0084F940 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8CF2882B483F7E0084F940 /* SceneDelegate.swift */; };
@@ -21,11 +26,27 @@
 		2CEDCC272B4C2BC400A864C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEDCC262B4C2BC400A864C8 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2C143FD52B4D8D7600E823F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C8CF27B2B483F7E0084F940 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C8CF2822B483F7E0084F940;
+			remoteInfo = BitcoinChangeRates;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2C143FCA2B4D885F00E823F6 /* CustomNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNumberFormatter.swift; sourceTree = "<group>"; };
+		2C143FD12B4D8D7600E823F6 /* BitcoinChangeRatesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitcoinChangeRatesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C143FD32B4D8D7600E823F6 /* BitcoinChangeRatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinChangeRatesTests.swift; sourceTree = "<group>"; };
+		2C143FDE2B4D92CB00E823F6 /* changeRates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = changeRates.json; sourceTree = "<group>"; };
+		2C143FE02B4D9B1300E823F6 /* currencies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = currencies.json; sourceTree = "<group>"; };
+		2C143FE42B4D9BA900E823F6 /* CurrenciesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesTests.swift; sourceTree = "<group>"; };
+		2C143FE72B4D9BEC00E823F6 /* XCTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
 		2C3491B32B48476B00E4C402 /* ChangeRatesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRatesTableViewCell.swift; sourceTree = "<group>"; };
 		2C3491B52B48655400E4C402 /* ChangeRatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRatesViewModel.swift; sourceTree = "<group>"; };
-		2C3491B72B486A7300E4C402 /* ChangeRatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRatesModel.swift; sourceTree = "<group>"; };
+		2C3491B72B486A7300E4C402 /* BitcoinPricesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinPricesModel.swift; sourceTree = "<group>"; };
 		2C3491B92B486B2A00E4C402 /* available_currencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = available_currencies.json; sourceTree = "<group>"; };
 		2C8CF2832B483F7E0084F940 /* BitcoinChangeRates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitcoinChangeRates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8CF2862B483F7E0084F940 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +60,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2C143FCE2B4D8D7600E823F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C8CF2802B483F7E0084F940 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,13 +85,49 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		2C143FD22B4D8D7600E823F6 /* BitcoinChangeRatesTests */ = {
+			isa = PBXGroup;
+			children = (
+				2C143FE62B4D9BCD00E823F6 /* Extensions */,
+				2C143FDB2B4D91A900E823F6 /* Test Cases */,
+				2C143FDA2B4D919500E823F6 /* Mockup */,
+			);
+			path = BitcoinChangeRatesTests;
+			sourceTree = "<group>";
+		};
+		2C143FDA2B4D919500E823F6 /* Mockup */ = {
+			isa = PBXGroup;
+			children = (
+				2C143FDE2B4D92CB00E823F6 /* changeRates.json */,
+				2C143FE02B4D9B1300E823F6 /* currencies.json */,
+			);
+			path = Mockup;
+			sourceTree = "<group>";
+		};
+		2C143FDB2B4D91A900E823F6 /* Test Cases */ = {
+			isa = PBXGroup;
+			children = (
+				2C143FD32B4D8D7600E823F6 /* BitcoinChangeRatesTests.swift */,
+				2C143FE42B4D9BA900E823F6 /* CurrenciesTests.swift */,
+			);
+			path = "Test Cases";
+			sourceTree = "<group>";
+		};
+		2C143FE62B4D9BCD00E823F6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2C143FE72B4D9BEC00E823F6 /* XCTestCase.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2C3491B22B48475B00E4C402 /* ChangeRates */ = {
 			isa = PBXGroup;
 			children = (
 				2C8CF29A2B4843AA0084F940 /* ChangeRatesViewController.swift */,
 				2C3491B32B48476B00E4C402 /* ChangeRatesTableViewCell.swift */,
 				2C3491B52B48655400E4C402 /* ChangeRatesViewModel.swift */,
-				2C3491B72B486A7300E4C402 /* ChangeRatesModel.swift */,
+				2C3491B72B486A7300E4C402 /* BitcoinPricesModel.swift */,
 				2CEDCC262B4C2BC400A864C8 /* Constants.swift */,
 			);
 			path = ChangeRates;
@@ -73,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				2C8CF2852B483F7E0084F940 /* BitcoinChangeRates */,
+				2C143FD22B4D8D7600E823F6 /* BitcoinChangeRatesTests */,
 				2C8CF2842B483F7E0084F940 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				2C8CF2832B483F7E0084F940 /* BitcoinChangeRates.app */,
+				2C143FD12B4D8D7600E823F6 /* BitcoinChangeRatesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,6 +170,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2C143FD02B4D8D7600E823F6 /* BitcoinChangeRatesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C143FD92B4D8D7600E823F6 /* Build configuration list for PBXNativeTarget "BitcoinChangeRatesTests" */;
+			buildPhases = (
+				2C143FCD2B4D8D7600E823F6 /* Sources */,
+				2C143FCE2B4D8D7600E823F6 /* Frameworks */,
+				2C143FCF2B4D8D7600E823F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C143FD62B4D8D7600E823F6 /* PBXTargetDependency */,
+			);
+			name = BitcoinChangeRatesTests;
+			productName = BitcoinChangeRatesTests;
+			productReference = 2C143FD12B4D8D7600E823F6 /* BitcoinChangeRatesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		2C8CF2822B483F7E0084F940 /* BitcoinChangeRates */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C8CF2972B483F7F0084F940 /* Build configuration list for PBXNativeTarget "BitcoinChangeRates" */;
@@ -131,6 +215,10 @@
 				LastSwiftUpdateCheck = 1510;
 				LastUpgradeCheck = 1510;
 				TargetAttributes = {
+					2C143FD02B4D8D7600E823F6 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 2C8CF2822B483F7E0084F940;
+					};
 					2C8CF2822B483F7E0084F940 = {
 						CreatedOnToolsVersion = 15.1;
 					};
@@ -150,11 +238,21 @@
 			projectRoot = "";
 			targets = (
 				2C8CF2822B483F7E0084F940 /* BitcoinChangeRates */,
+				2C143FD02B4D8D7600E823F6 /* BitcoinChangeRatesTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2C143FCF2B4D8D7600E823F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C143FDF2B4D92CB00E823F6 /* changeRates.json in Resources */,
+				2C143FE12B4D9B1300E823F6 /* currencies.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C8CF2812B483F7E0084F940 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -169,6 +267,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2C143FCD2B4D8D7600E823F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C143FD42B4D8D7600E823F6 /* BitcoinChangeRatesTests.swift in Sources */,
+				2C143FE82B4D9BEC00E823F6 /* XCTestCase.swift in Sources */,
+				2C143FE52B4D9BA900E823F6 /* CurrenciesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C8CF27F2B483F7E0084F940 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -176,7 +284,7 @@
 				2C8CF2872B483F7E0084F940 /* AppDelegate.swift in Sources */,
 				2C3491B42B48476B00E4C402 /* ChangeRatesTableViewCell.swift in Sources */,
 				2C8CF29B2B4843AA0084F940 /* ChangeRatesViewController.swift in Sources */,
-				2C3491B82B486A7300E4C402 /* ChangeRatesModel.swift in Sources */,
+				2C3491B82B486A7300E4C402 /* BitcoinPricesModel.swift in Sources */,
 				2CEDCC272B4C2BC400A864C8 /* Constants.swift in Sources */,
 				2C3491B62B48655400E4C402 /* ChangeRatesViewModel.swift in Sources */,
 				2C143FCB2B4D885F00E823F6 /* CustomNumberFormatter.swift in Sources */,
@@ -185,6 +293,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2C143FD62B4D8D7600E823F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C8CF2822B483F7E0084F940 /* BitcoinChangeRates */;
+			targetProxy = 2C143FD52B4D8D7600E823F6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2C8CF28C2B483F7E0084F940 /* Main.storyboard */ = {
@@ -206,6 +322,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2C143FD72B4D8D7600E823F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFZ4MU84W6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = berserk.BitcoinChangeRatesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BitcoinChangeRates.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BitcoinChangeRates";
+			};
+			name = Debug;
+		};
+		2C143FD82B4D8D7600E823F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DFZ4MU84W6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = berserk.BitcoinChangeRatesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BitcoinChangeRates.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BitcoinChangeRates";
+			};
+			name = Release;
+		};
 		2C8CF2952B483F7F0084F940 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -384,6 +536,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2C143FD92B4D8D7600E823F6 /* Build configuration list for PBXNativeTarget "BitcoinChangeRatesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C143FD72B4D8D7600E823F6 /* Debug */,
+				2C143FD82B4D8D7600E823F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2C8CF27E2B483F7E0084F940 /* Build configuration list for PBXProject "BitcoinChangeRates" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

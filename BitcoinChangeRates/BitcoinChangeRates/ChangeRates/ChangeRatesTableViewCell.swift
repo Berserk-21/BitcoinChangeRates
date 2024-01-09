@@ -32,7 +32,7 @@ final class ChangeRatesTableViewCell: UITableViewCell {
     
     // MARK: - Custom Methods
     
-    func configureCell(with model: ChangeRatesSubModel) {
+    func configureCell(with model: ChangeRatesModel) {
         
         flagImageView.image = UIImage(named: model.isocode.uppercased())
         titleLabel.text = model.isocode.uppercased()
