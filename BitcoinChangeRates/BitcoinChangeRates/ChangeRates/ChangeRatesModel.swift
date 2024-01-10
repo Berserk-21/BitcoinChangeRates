@@ -7,26 +7,28 @@
 
 import Foundation
 
-struct ChangeRatesModel: Decodable {
+struct ChangeRatesModel {
     
-    let bitcoin: [String: Double]
-    
-    var changeRates: [ChangeRatesSubModel] {
-        
-        var rates: [ChangeRatesSubModel] = []
-
-        for element in bitcoin {
-            let rate = ChangeRatesSubModel(name: "Currency Name", isocode: element.key, localeId: "Locale Identifier", changeRate: element.value)
-            rates.append(rate)
-        }            
-        
-        return rates
-    }
-}
-
-struct ChangeRatesSubModel: Decodable {
     let name: String
     let isocode: String
     let localeId: String
-    var changeRate: Double?
+    let price: Double
+    
+    init(name: String, isocode: String, localeId: String, price: Double) {
+        self.name = name
+        self.isocode = isocode
+        self.localeId = localeId
+        self.price = price
+    }
+}
+
+struct BitcoinPricesModel: Decodable {
+    
+    let bitcoin: [String: Double]
+}
+
+struct CurrencyModel: Decodable {
+    let name: String
+    let isocode: String
+    let localeId: String
 }
