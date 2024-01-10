@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AddCurrencyViewController: UIViewController, UITableViewDataSource {
+final class AddCurrencyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Properties
     
@@ -43,6 +43,14 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource {
         searchBar.placeholder = "Search a currency.."
     }
     
+    // MARK: - Helper Methods
+    
+    private func reloadRows(at indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
     // MARK: - Actions
     
     @objc private func didTapCancel() {
@@ -66,5 +74,14 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        var currency = viewModel?.allCurrencies?[indexPath.row]
+        
+        currency?.isSelected.toggle()
+        
+        reloadRows(at: indexPath)
     }
 }

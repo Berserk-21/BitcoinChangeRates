@@ -44,9 +44,7 @@ final class AddCurrencyTableViewCell: UITableViewCell {
         titleLabel.text = model.isocode.uppercased()
         subtitleLabel.text = model.name
         
-        if model.isSelected {
-            accessoryType = .checkmark
-        }
+        accessoryType = model.isSelected ? .checkmark : .none
     }
     
 }
