@@ -24,20 +24,63 @@
             </objects>
             <point key="canvasLocation" x="-766" y="-81"/>
         </scene>
-        <!--Add Currency View Controller-->
+        <!--Add Currencies-->
         <scene sceneID="ZVK-cV-2s3">
             <objects>
-                <viewController id="adT-lM-ewR" customClass="AddCurrencyViewController" customModule="BitcoinChangeRates" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Add Currencies" id="adT-lM-ewR" customClass="AddCurrencyViewController" customModule="BitcoinChangeRates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9nZ-4G-CFl">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="nR0-Yg-wAm">
+                                <rect key="frame" x="0.0" y="56" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="adT-lM-ewR" id="ywR-KA-NBJ"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fdP-zy-JzU">
+                                <rect key="frame" x="0.0" y="112" width="393" height="710"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="4NR-j9-O6K"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fdP-zy-JzU" firstAttribute="leading" secondItem="4NR-j9-O6K" secondAttribute="leading" id="BkS-NX-Pr5"/>
+                            <constraint firstItem="nR0-Yg-wAm" firstAttribute="leading" secondItem="4NR-j9-O6K" secondAttribute="leading" id="Iz9-7K-U5X"/>
+                            <constraint firstItem="4NR-j9-O6K" firstAttribute="trailing" secondItem="nR0-Yg-wAm" secondAttribute="trailing" id="MIP-d1-ZHK"/>
+                            <constraint firstItem="fdP-zy-JzU" firstAttribute="top" secondItem="nR0-Yg-wAm" secondAttribute="bottom" id="kJQ-lc-oO1"/>
+                            <constraint firstItem="4NR-j9-O6K" firstAttribute="bottom" secondItem="fdP-zy-JzU" secondAttribute="bottom" constant="20" id="o7O-md-acL"/>
+                            <constraint firstItem="nR0-Yg-wAm" firstAttribute="top" secondItem="4NR-j9-O6K" secondAttribute="top" id="qRI-NO-uhw"/>
+                            <constraint firstItem="4NR-j9-O6K" firstAttribute="trailing" secondItem="fdP-zy-JzU" secondAttribute="trailing" id="weh-AB-DKX"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="iX0-iR-ZZs"/>
+                    <connections>
+                        <outlet property="searchBar" destination="nR0-Yg-wAm" id="FHv-p5-R5O"/>
+                        <outlet property="tableView" destination="fdP-zy-JzU" id="2qg-Eb-TMc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h84-v6-0Al" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="24" y="-811"/>
+            <point key="canvasLocation" x="23.664122137404579" y="-811.26760563380287"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="miy-UA-tRw">
+            <objects>
+                <navigationController id="Z07-df-1kp" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vv9-Ea-2q0">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="adT-lM-ewR" kind="relationship" relationship="rootViewController" id="ZJ0-2A-oeS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lgi-nV-90T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-767" y="-811"/>
         </scene>
         <!--Change Rates View Controller-->
         <scene sceneID="i4V-PV-EDK">
@@ -160,7 +203,7 @@
                         <outlet property="bitcoinAmountLabel" destination="IwD-7b-q5I" id="uEI-hE-xJm"/>
                         <outlet property="bitcoinSymbolLabel" destination="W6m-bM-xEy" id="jH0-nH-9v5"/>
                         <outlet property="tableView" destination="jsI-jH-AXm" id="BMQ-ez-PT4"/>
-                        <segue destination="adT-lM-ewR" kind="popoverPresentation" identifier="FromChangeRatesToAddCurrency" popoverAnchorView="ZaG-Fc-BF1" id="GK8-L5-nG9">
+                        <segue destination="Z07-df-1kp" kind="popoverPresentation" identifier="FromChangeRatesToAddCurrency" popoverAnchorView="ZaG-Fc-BF1" id="RNL-Gd-ZU0">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                     </connections>
