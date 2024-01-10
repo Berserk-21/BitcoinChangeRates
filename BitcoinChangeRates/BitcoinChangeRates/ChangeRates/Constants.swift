@@ -11,4 +11,8 @@ enum Constants {
     enum Keys {
         static let availableCurrencies = "available_currencies"
     }
+    
+    enum SegueIdentifiers {
+        static let fromChangeRatesToAddCurrency = "FromChangeRatesToAddCurrency"
+    }
 }

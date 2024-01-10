@@ -33,6 +33,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     private func setupLayout() {
         
         setupHeaderView()
+        setupLeftBarButton()
     }
     
     private func setupHeaderView() {
@@ -42,6 +43,13 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         
         bitcoinSymbolLabel.font = UIFont.systemFont(ofSize: 48.0, weight: .medium)
         bitcoinSymbolLabel.textColor = .orange
+    }
+    
+    private func setupLeftBarButton() {
+        
+        let leftBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddCurrency))
+        
+        navigationItem.leftBarButtonItem = leftBarButton
     }
     
     // MARK: - Custom Methods
@@ -59,6 +67,13 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
                 // Afficher un layout d'erreur/reload
             }
         })
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func didTapAddCurrency() {
+        
+        performSegue(withIdentifier: Constants.SegueIdentifiers.fromChangeRatesToAddCurrency, sender: nil)
     }
     
     // MARK: - UITableView DataSource
