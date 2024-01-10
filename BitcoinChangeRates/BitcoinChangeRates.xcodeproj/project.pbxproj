@@ -25,6 +25,8 @@
 		2CC4F3582B4DC7840011AF00 /* BitcoinPricesModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4F3572B4DC7840011AF00 /* BitcoinPricesModelTests.swift */; };
 		2CC4F35B2B4EA4A20011AF00 /* AddCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4F35A2B4EA4A20011AF00 /* AddCurrencyViewController.swift */; };
 		2CC4F35D2B4EAC150011AF00 /* AddCurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4F35C2B4EAC150011AF00 /* AddCurrencyTableViewCell.swift */; };
+		2CC4F35F2B4EF0430011AF00 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4F35E2B4EF0430011AF00 /* NetworkService.swift */; };
+		2CE1A56D2B4EF182007675E1 /* BundleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1A56C2B4EF182007675E1 /* BundleService.swift */; };
 		2CEDCC272B4C2BC400A864C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEDCC262B4C2BC400A864C8 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,8 @@
 		2CC4F3572B4DC7840011AF00 /* BitcoinPricesModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinPricesModelTests.swift; sourceTree = "<group>"; };
 		2CC4F35A2B4EA4A20011AF00 /* AddCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrencyViewController.swift; sourceTree = "<group>"; };
 		2CC4F35C2B4EAC150011AF00 /* AddCurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		2CC4F35E2B4EF0430011AF00 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		2CE1A56C2B4EF182007675E1 /* BundleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleService.swift; sourceTree = "<group>"; };
 		2CEDCC262B4C2BC400A864C8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				2C143FCA2B4D885F00E823F6 /* CustomNumberFormatter.swift */,
+				2CC4F35E2B4EF0430011AF00 /* NetworkService.swift */,
+				2CE1A56C2B4EF182007675E1 /* BundleService.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -295,6 +301,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CC4F35F2B4EF0430011AF00 /* NetworkService.swift in Sources */,
+				2CE1A56D2B4EF182007675E1 /* BundleService.swift in Sources */,
 				2C8CF2872B483F7E0084F940 /* AppDelegate.swift in Sources */,
 				2C3491B42B48476B00E4C402 /* ChangeRatesTableViewCell.swift in Sources */,
 				2C8CF29B2B4843AA0084F940 /* ChangeRatesViewController.swift in Sources */,

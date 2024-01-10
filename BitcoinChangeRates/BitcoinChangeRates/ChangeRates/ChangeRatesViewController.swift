@@ -56,15 +56,18 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
     private func fetchData() {
         
-        changeRateViewModel = ChangeRatesViewModel()
+        changeRateViewModel = ChangeRatesViewModel(bundleService: BundleService(), networkService: NetworkService())
         
-        changeRateViewModel?.fetchData(completionHandler: { [weak self] success in
-            if success {
+        changeRateViewModel?.fetchData(completionHandler: { [weak self] result in
+            
+            switch result {
+            case .success(_):
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
-            } else {
+            case .failure(let error):
                 // Afficher un layout d'erreur/reload
+                break
             }
         })
     }
