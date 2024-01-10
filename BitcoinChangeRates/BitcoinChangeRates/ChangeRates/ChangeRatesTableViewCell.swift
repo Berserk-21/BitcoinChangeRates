@@ -28,6 +28,10 @@ final class ChangeRatesTableViewCell: UITableViewCell {
     
     private func setupLayout() {
         
+        titleLabel.font = UIFont.systemFont(ofSize: 14.0, weight: .medium)
+        titleLabel.textColor = .darkGray
+        subtitleLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .medium)
+        valueLabel.font = UIFont.systemFont(ofSize: 18.0, weight: .semibold)
     }
     
     // MARK: - Custom Methods

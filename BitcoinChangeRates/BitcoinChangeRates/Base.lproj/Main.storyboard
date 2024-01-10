@@ -76,20 +76,18 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Zpa-TS-aaH" secondAttribute="trailing" constant="16" id="4aS-Mn-BXb"/>
+                                                <constraint firstItem="YUr-ws-YX3" firstAttribute="leading" secondItem="0Ca-7h-GRR" secondAttribute="leading" constant="16" id="Ecm-Xg-0ds"/>
                                                 <constraint firstItem="Zpa-TS-aaH" firstAttribute="top" secondItem="YUr-ws-YX3" secondAttribute="top" id="NCa-hP-Dwb"/>
                                                 <constraint firstItem="Zpa-TS-aaH" firstAttribute="leading" secondItem="YUr-ws-YX3" secondAttribute="trailing" constant="16" id="OdP-Ln-X6T"/>
+                                                <constraint firstAttribute="bottom" secondItem="YUr-ws-YX3" secondAttribute="bottom" constant="16" id="emC-qg-B7a"/>
+                                                <constraint firstItem="YUr-ws-YX3" firstAttribute="top" secondItem="0Ca-7h-GRR" secondAttribute="top" constant="16" id="jh2-ts-09U"/>
                                                 <constraint firstItem="Zpa-TS-aaH" firstAttribute="bottom" secondItem="YUr-ws-YX3" secondAttribute="bottom" id="prs-E4-IIr"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstItem="YUr-ws-YX3" firstAttribute="leading" secondItem="0Ca-7h-GRR" secondAttribute="leading" constant="16" id="Ecm-Xg-0ds"/>
-                                            <constraint firstItem="0Ca-7h-GRR" firstAttribute="bottom" secondItem="YUr-ws-YX3" secondAttribute="bottom" constant="16" id="emC-qg-B7a"/>
-                                            <constraint firstItem="YUr-ws-YX3" firstAttribute="top" secondItem="0Ca-7h-GRR" secondAttribute="top" constant="16" id="jh2-ts-09U"/>
-                                        </constraints>
                                         <connections>
-                                            <outlet property="flagImageView" destination="YUr-ws-YX3" id="G75-Th-YvE"/>
-                                            <outlet property="isocodeLabel" destination="OjF-lK-Veq" id="KEX-rM-kfU"/>
-                                            <outlet property="nameLabel" destination="iwC-cy-uNj" id="UGl-MJ-yGO"/>
+                                            <outlet property="flagImageView" destination="YUr-ws-YX3" id="lOn-73-Tph"/>
+                                            <outlet property="subtitleLabel" destination="iwC-cy-uNj" id="k4u-6n-D8c"/>
+                                            <outlet property="titleLabel" destination="OjF-lK-Veq" id="VCl-SF-fjb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

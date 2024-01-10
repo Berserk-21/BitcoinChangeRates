@@ -11,8 +11,8 @@ final class AddCurrencyTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     @IBOutlet weak private var flagImageView: UIImageView!
-    @IBOutlet weak private var isocodeLabel: UILabel!
-    @IBOutlet weak private var nameLabel: UILabel!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var subtitleLabel: UILabel!
     
     static let identifier: String = Constants.CellIdentifiers.addCurrencyTableViewCell
     
@@ -28,7 +28,10 @@ final class AddCurrencyTableViewCell: UITableViewCell {
     
     private func setupLayout() {
         
+        titleLabel.font = UIFont.systemFont(ofSize: 14.0, weight: .medium)
+        titleLabel.textColor = .darkGray
         
+        subtitleLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .medium)
     }
     
     // MARK: - Custom Methods
@@ -38,8 +41,8 @@ final class AddCurrencyTableViewCell: UITableViewCell {
         let model = model[indexPath.row]
         
         flagImageView.image = UIImage(named: model.isocode.uppercased())
-        isocodeLabel.text = model.isocode
-        nameLabel.text = model.name
+        titleLabel.text = model.isocode.uppercased()
+        subtitleLabel.text = model.name
     }
     
 }
