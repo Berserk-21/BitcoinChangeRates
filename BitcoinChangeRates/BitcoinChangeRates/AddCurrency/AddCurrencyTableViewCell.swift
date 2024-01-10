@@ -10,6 +10,9 @@ import UIKit
 final class AddCurrencyTableViewCell: UITableViewCell {
     
     // MARK: - Properties
+    @IBOutlet weak private var flagImageView: UIImageView!
+    @IBOutlet weak private var isocodeLabel: UILabel!
+    @IBOutlet weak private var nameLabel: UILabel!
     
     static let identifier: String = Constants.CellIdentifiers.addCurrencyTableViewCell
     
@@ -30,9 +33,13 @@ final class AddCurrencyTableViewCell: UITableViewCell {
     
     // MARK: - Custom Methods
     
-    func configure(at indexPath: IndexPath, with model: [ChangeRatesModel]) {
+    func configure(at indexPath: IndexPath, with model: [CurrencyModel]) {
         
-        textLabel?.text = model[indexPath.row].isocode
+        let model = model[indexPath.row]
+        
+        flagImageView.image = UIImage(named: model.isocode.uppercased())
+        isocodeLabel.text = model.isocode
+        nameLabel.text = model.name
     }
     
 }

@@ -54,14 +54,14 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return viewModel?.changeRates.count ?? 0
+        return viewModel?.currencies?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AddCurrencyTableViewCell.identifier, for: indexPath) as? AddCurrencyTableViewCell else { return UITableViewCell() }
         
-        if let changeRates = viewModel?.changeRates {
+        if let changeRates = viewModel?.currencies {
             cell.configure(at: indexPath, with: changeRates)
         }
         

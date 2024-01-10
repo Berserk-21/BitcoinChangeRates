@@ -10,9 +10,9 @@ import Foundation
 final class ChangeRatesViewModel {
     
     var changeRates: [ChangeRatesModel] = []
-    
+    var currencies: [CurrencyModel]?
+
     private var bitcoinPrices: BitcoinPricesModel?
-    private var currencies: [CurrencyModel]?
     
     func fetchData(completionHandler: @escaping (Bool) -> ()) {
         
