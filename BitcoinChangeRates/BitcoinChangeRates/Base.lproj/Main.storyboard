@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-766" y="-81"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Currency View Controller-->
         <scene sceneID="ZVK-cV-2s3">
             <objects>
-                <viewController id="adT-lM-ewR" sceneMemberID="viewController">
+                <viewController id="adT-lM-ewR" customClass="AddCurrencyViewController" customModule="BitcoinChangeRates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9nZ-4G-CFl">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

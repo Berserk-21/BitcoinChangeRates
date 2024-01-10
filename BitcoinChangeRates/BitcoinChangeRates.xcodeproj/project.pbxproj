@@ -23,6 +23,7 @@
 		2C8CF2932B483F7F0084F940 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C8CF2912B483F7F0084F940 /* LaunchScreen.storyboard */; };
 		2C8CF29B2B4843AA0084F940 /* ChangeRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8CF29A2B4843AA0084F940 /* ChangeRatesViewController.swift */; };
 		2CC4F3582B4DC7840011AF00 /* BitcoinPricesModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4F3572B4DC7840011AF00 /* BitcoinPricesModelTests.swift */; };
+		2CC4F35B2B4EA4A20011AF00 /* AddCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4F35A2B4EA4A20011AF00 /* AddCurrencyViewController.swift */; };
 		2CEDCC272B4C2BC400A864C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEDCC262B4C2BC400A864C8 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		2C8CF2942B483F7F0084F940 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C8CF29A2B4843AA0084F940 /* ChangeRatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRatesViewController.swift; sourceTree = "<group>"; };
 		2CC4F3572B4DC7840011AF00 /* BitcoinPricesModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinPricesModelTests.swift; sourceTree = "<group>"; };
+		2CC4F35A2B4EA4A20011AF00 /* AddCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrencyViewController.swift; sourceTree = "<group>"; };
 		2CEDCC262B4C2BC400A864C8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +160,7 @@
 				2C8CF2882B483F7E0084F940 /* SceneDelegate.swift */,
 				2C143FCC2B4D8BA900E823F6 /* Helper */,
 				2C3491B22B48475B00E4C402 /* ChangeRates */,
+				2CC4F3592B4EA48C0011AF00 /* AddCurrency */,
 				2C8CF28C2B483F7E0084F940 /* Main.storyboard */,
 				2C8CF28F2B483F7F0084F940 /* Assets.xcassets */,
 				2C8CF2912B483F7F0084F940 /* LaunchScreen.storyboard */,
@@ -165,6 +168,14 @@
 				2C8CF2942B483F7F0084F940 /* Info.plist */,
 			);
 			path = BitcoinChangeRates;
+			sourceTree = "<group>";
+		};
+		2CC4F3592B4EA48C0011AF00 /* AddCurrency */ = {
+			isa = PBXGroup;
+			children = (
+				2CC4F35A2B4EA4A20011AF00 /* AddCurrencyViewController.swift */,
+			);
+			path = AddCurrency;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +295,7 @@
 				2C8CF2872B483F7E0084F940 /* AppDelegate.swift in Sources */,
 				2C3491B42B48476B00E4C402 /* ChangeRatesTableViewCell.swift in Sources */,
 				2C8CF29B2B4843AA0084F940 /* ChangeRatesViewController.swift in Sources */,
+				2CC4F35B2B4EA4A20011AF00 /* AddCurrencyViewController.swift in Sources */,
 				2C3491B82B486A7300E4C402 /* ChangeRatesModel.swift in Sources */,
 				2CEDCC272B4C2BC400A864C8 /* Constants.swift in Sources */,
 				2C3491B62B48655400E4C402 /* ChangeRatesViewModel.swift in Sources */,
