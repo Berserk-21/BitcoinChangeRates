@@ -11,7 +11,7 @@ final class ChangeRatesTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    static let identifier: String = "ChangeRatesTableViewCell"
+    static let identifier: String = Constants.CellIdentifiers.changeRatesTableViewCell
     
     @IBOutlet weak private var flagImageView: UIImageView!
     @IBOutlet weak private var titleLabel: UILabel!

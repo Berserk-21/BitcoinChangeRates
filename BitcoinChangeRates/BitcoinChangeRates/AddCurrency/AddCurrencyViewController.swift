@@ -7,9 +7,11 @@
 
 import UIKit
 
-final class AddCurrencyViewController: UIViewController {
+final class AddCurrencyViewController: UIViewController, UITableViewDataSource {
     
     // MARK: - Properties
+    
+    var viewModel: ChangeRatesViewModel?
     
     @IBOutlet weak private var searchBar: UISearchBar!
     @IBOutlet weak private var tableView: UITableView!
@@ -46,5 +48,23 @@ final class AddCurrencyViewController: UIViewController {
     @objc private func didTapCancel() {
         
         dismiss(animated: true)
+    }
+    
+    // MARK: - UITableView DataSource
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return viewModel?.changeRates.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AddCurrencyTableViewCell.identifier, for: indexPath) as? AddCurrencyTableViewCell else { return UITableViewCell() }
+        
+        if let changeRates = viewModel?.changeRates {
+            cell.configure(at: indexPath, with: changeRates)
+        }
+        
+        return cell
     }
 }

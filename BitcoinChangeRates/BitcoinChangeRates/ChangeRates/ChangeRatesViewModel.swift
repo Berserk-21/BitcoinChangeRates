@@ -78,7 +78,7 @@ final class ChangeRatesViewModel {
     
     private func fetchLocalData() {
         
-        guard let url = Bundle.main.url(forResource: Constants.Keys.availableCurrencies, withExtension: "json") else { return }
+        guard let url = Bundle.main.url(forResource: Constants.Bundle.Resource.availableCurrencies, withExtension: Constants.Bundle.Extension.json) else { return }
         
         do {
             let data = try Data(contentsOf: url)

@@ -76,6 +76,20 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         performSegue(withIdentifier: Constants.SegueIdentifiers.fromChangeRatesToAddCurrency, sender: nil)
     }
     
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.identifier {
+        case Constants.SegueIdentifiers.fromChangeRatesToAddCurrency:
+            if let navigationController = segue.destination as? UINavigationController, let addCurrencyVC = navigationController.topViewController as? AddCurrencyViewController {
+                addCurrencyVC.viewModel = self.changeRateViewModel
+            }
+        default:
+            break
+        }
+    }
+    
     // MARK: - UITableView DataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
