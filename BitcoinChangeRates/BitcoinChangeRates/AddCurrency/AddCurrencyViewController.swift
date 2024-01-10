@@ -97,9 +97,9 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
         
         guard let item = viewModel?.allCurrencies?[indexPath.row] else { return }
         
-        viewModel?.allCurrencies?[indexPath.row].isSelected.toggle()
-        
         updateUserDefaults(for: item)
+
+        viewModel?.allCurrencies?[indexPath.row].isSelected.toggle()
         
         reloadRow(at: indexPath)
         
@@ -113,9 +113,9 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
             let isocode = item.isocode
             
             if item.isSelected {
-                userCurrencies.append(isocode)
-            } else {
                 userCurrencies.removeAll(where: { $0 == isocode })
+            } else {
+                userCurrencies.append(isocode)
             }
             
             userDefaults.setValue(userCurrencies, forKey: Constants.UserDefaults.selectedCurrencies)

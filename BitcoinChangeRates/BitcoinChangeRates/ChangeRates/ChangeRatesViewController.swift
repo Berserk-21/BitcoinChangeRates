@@ -18,6 +18,9 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak private var tableView: UITableView!
     
+    @IBOutlet weak private var loadingView: UIView!
+    @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -53,6 +56,21 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         navigationItem.leftBarButtonItem = leftBarButton
     }
     
+    private func updateActivityIndicator(animate: Bool) {
+        
+        DispatchQueue.main.async { [weak self] in
+            if animate {
+                self?.loadingView.isHidden = false
+                self?.activityIndicator.startAnimating()
+                self?.tableView.isHidden = true
+            } else {
+                self?.loadingView.isHidden = true
+                self?.activityIndicator.stopAnimating()
+                self?.tableView.isHidden = false
+            }
+        }
+    }
+    
     // MARK: - Custom Methods
     
     private func subscribeNotifications() {
@@ -63,6 +81,8 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     @objc private func fetchData() {
         
         changeRateViewModel = ChangeRatesViewModel(bundleService: BundleService(), networkService: NetworkService())
+        
+        updateActivityIndicator(animate: true)
         
         changeRateViewModel?.fetchData(completionHandler: { [weak self] result in
             
@@ -75,6 +95,8 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
                 // Afficher un layout d'erreur/reload
                 break
             }
+            
+            self?.updateActivityIndicator(animate: false)
         })
     }
     
