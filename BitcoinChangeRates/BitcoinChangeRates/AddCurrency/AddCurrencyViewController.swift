@@ -16,12 +16,22 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     @IBOutlet weak private var searchBar: UISearchBar!
     @IBOutlet weak private var tableView: UITableView!
     
+    private var shouldFetchData: Bool = false
+    
+    private let userDefaults = UserDefaults.standard
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupLayout()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        sendNotificationIfNeeded()
     }
     
     // MARK: - Setup Layout
@@ -48,6 +58,13 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     private func reloadRow(at indexPath: IndexPath) {
         DispatchQueue.main.async {
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    private func sendNotificationIfNeeded() {
+        
+        if shouldFetchData {
+            NotificationCenter.default.post(name: NSNotification.Name(Constants.Notifications.shouldFetchData), object: nil)
         }
     }
     
@@ -78,8 +95,31 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        guard let item = viewModel?.allCurrencies?[indexPath.row] else { return }
+        
         viewModel?.allCurrencies?[indexPath.row].isSelected.toggle()
         
+        updateUserDefaults(for: item)
+        
         reloadRow(at: indexPath)
+        
+        shouldFetchData = true
+    }
+    
+    private func updateUserDefaults(for item: CurrencyModel) {
+        
+        if var userCurrencies = userDefaults.object(forKey: Constants.UserDefaults.selectedCurrencies) as? [String] {
+            
+            let isocode = item.isocode
+            
+            if item.isSelected {
+                userCurrencies.append(isocode)
+            } else {
+                userCurrencies.removeAll(where: { $0 == isocode })
+            }
+            
+            userDefaults.setValue(userCurrencies, forKey: Constants.UserDefaults.selectedCurrencies)
+        }
+        
     }
 }

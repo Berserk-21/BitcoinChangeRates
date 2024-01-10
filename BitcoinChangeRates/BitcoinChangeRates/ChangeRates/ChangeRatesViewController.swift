@@ -26,6 +26,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         setupLayout()
         
         fetchData()
+        subscribeNotifications()
     }
     
     // MARK: - Setup Layout
@@ -54,7 +55,12 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
     // MARK: - Custom Methods
     
-    private func fetchData() {
+    private func subscribeNotifications() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchData), name: NSNotification.Name(Constants.Notifications.shouldFetchData), object: nil)
+    }
+    
+    @objc private func fetchData() {
         
         changeRateViewModel = ChangeRatesViewModel(bundleService: BundleService(), networkService: NetworkService())
         

@@ -35,4 +35,8 @@ enum Constants {
         static let defaultUrlEmpty = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies="
         static let defaultSelectedCurrency = ["eur", "jpy", "usd", "gbp"]
     }
+    
+    enum Notifications {
+        static let shouldFetchData = "shouldFetchData"
+    }
 }
