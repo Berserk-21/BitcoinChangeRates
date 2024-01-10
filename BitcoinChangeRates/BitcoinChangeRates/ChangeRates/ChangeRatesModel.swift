@@ -31,4 +31,5 @@ struct CurrencyModel: Decodable {
     let name: String
     let isocode: String
     let localeId: String
+    var isSelected: Bool
 }

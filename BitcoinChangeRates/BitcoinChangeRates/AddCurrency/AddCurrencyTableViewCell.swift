@@ -43,6 +43,10 @@ final class AddCurrencyTableViewCell: UITableViewCell {
         flagImageView.image = UIImage(named: model.isocode.uppercased())
         titleLabel.text = model.isocode.uppercased()
         subtitleLabel.text = model.name
+        
+        if model.isSelected {
+            accessoryType = .checkmark
+        }
     }
     
 }

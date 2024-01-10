@@ -10,7 +10,7 @@ import Foundation
 final class ChangeRatesViewModel {
     
     var changeRates: [ChangeRatesModel] = []
-    var currencies: [CurrencyModel]?
+    var allCurrencies: [CurrencyModel]?
 
     private var bitcoinPrices: BitcoinPricesModel?
     private let userDefaults = UserDefaults.standard
@@ -48,7 +48,7 @@ final class ChangeRatesViewModel {
     
     private func prepareChangeRates() {
         
-        guard let unwrappedCurrencies = currencies else { return }
+        guard let unwrappedCurrencies = allCurrencies else { return }
         guard let unwrappedBitcoinPrices = bitcoinPrices else { return }
         
         var changeRates: [ChangeRatesModel] = []
@@ -79,18 +79,7 @@ final class ChangeRatesViewModel {
     
     private func buildUrlString() -> String {
         
-        let selectedCurrencies: [String]
-        
-        if let userCurrencies = userDefaults.object(forKey: Constants.UserDefaults.selectedCurrencies) as? [String] {
-            // Use user selected currencies
-            selectedCurrencies = userCurrencies
-        } else {
-            // Use default state
-            selectedCurrencies = Constants.URLRequest.defaultSelectedCurrency
-            
-            // set default state in UserDefaults
-            userDefaults.set(selectedCurrencies, forKey: Constants.UserDefaults.selectedCurrencies)
-        }
+        let selectedCurrencies = getSelectedCurrencies()
         
         let cleanedSelectedCurrencies = selectedCurrencies.filter({ !$0.isEmpty })
         
@@ -109,18 +98,47 @@ final class ChangeRatesViewModel {
         return urlString
     }
     
+    private func getSelectedCurrencies() -> [String] {
+        
+        let selectedCurrencies: [String]
+        
+        if let userCurrencies = userDefaults.object(forKey: Constants.UserDefaults.selectedCurrencies) as? [String] {
+            // Use user selected currencies
+            selectedCurrencies = userCurrencies
+        } else {
+            // Use default state
+            selectedCurrencies = Constants.URLRequest.defaultSelectedCurrency
+            
+            // set default state in UserDefaults
+            userDefaults.set(selectedCurrencies, forKey: Constants.UserDefaults.selectedCurrencies)
+        }
+        
+        return selectedCurrencies
+    }
+    
     private func fetchLocalData() {
         
         guard let url = Bundle.main.url(forResource: Constants.Bundle.Resource.availableCurrencies, withExtension: Constants.Bundle.Extension.json) else { return }
         
         do {
             let data = try Data(contentsOf: url)
-            let currencies = try JSONDecoder().decode([CurrencyModel].self, from: data)
+            self.allCurrencies = try JSONDecoder().decode([CurrencyModel].self, from: data)
             
-            self.currencies = currencies
+            updateIsSelectedState()
             
         } catch {
             print(error)
+        }
+    }
+    
+    private func updateIsSelectedState() {
+        
+        let selectedCurrencies = getSelectedCurrencies()
+        
+        selectedCurrencies.forEach { isocode in
+            if let index = allCurrencies?.firstIndex(where: { $0.isocode == isocode }) {
+                allCurrencies?[index].isSelected = true
+            }
         }
     }
     
