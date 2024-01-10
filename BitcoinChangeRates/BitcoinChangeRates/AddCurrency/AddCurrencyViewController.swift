@@ -45,7 +45,7 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     // MARK: - Helper Methods
     
-    private func reloadRows(at indexPath: IndexPath) {
+    private func reloadRow(at indexPath: IndexPath) {
         DispatchQueue.main.async {
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
         }
@@ -78,10 +78,8 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        var currency = viewModel?.allCurrencies?[indexPath.row]
+        viewModel?.allCurrencies?[indexPath.row].isSelected.toggle()
         
-        currency?.isSelected.toggle()
-        
-        reloadRows(at: indexPath)
+        reloadRow(at: indexPath)
     }
 }
