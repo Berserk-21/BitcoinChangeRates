@@ -14,8 +14,6 @@ final class AddCurrencyViewController: UIViewController {
     @IBOutlet weak private var searchBar: UISearchBar!
     @IBOutlet weak private var tableView: UITableView!
     
-    @IBOutlet weak private var cancelBarButton: UIBarButtonItem!
-    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
