@@ -13,6 +13,7 @@ final class ChangeRatesViewModel {
     var currencies: [CurrencyModel]?
 
     private var bitcoinPrices: BitcoinPricesModel?
+    private let userDefaults = UserDefaults.standard
     
     func fetchData(completionHandler: @escaping (Bool) -> ()) {
         
@@ -69,11 +70,43 @@ final class ChangeRatesViewModel {
     
     private func getUrl() -> URL? {
         
-        let urlString = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur%2Cjpy%2Cusd%2Caud%2Ccad%2Cchf%2Cgbp%2Cnzd"
+        let urlString = buildUrlString()
         
         guard let url = URL(string: urlString) else { return nil }
         
         return url
+    }
+    
+    private func buildUrlString() -> String {
+        
+        let selectedCurrencies: [String]
+        
+        if let userCurrencies = userDefaults.object(forKey: Constants.UserDefaults.selectedCurrencies) as? [String] {
+            // Use user selected currencies
+            selectedCurrencies = userCurrencies
+        } else {
+            // Use default state
+            selectedCurrencies = Constants.URLRequest.defaultSelectedCurrency
+            
+            // set default state in UserDefaults
+            userDefaults.set(selectedCurrencies, forKey: Constants.UserDefaults.selectedCurrencies)
+        }
+        
+        let cleanedSelectedCurrencies = selectedCurrencies.filter({ !$0.isEmpty })
+        
+        var urlString = Constants.URLRequest.defaultUrlEmpty
+        
+        for i in 0...cleanedSelectedCurrencies.count - 1 {
+            switch i {
+            case selectedCurrencies.count - 1 :
+                urlString.append(selectedCurrencies[i])
+            default:
+                urlString.append(selectedCurrencies[i])
+                urlString.append("%2C")
+            }
+        }
+        
+        return urlString
     }
     
     private func fetchLocalData() {

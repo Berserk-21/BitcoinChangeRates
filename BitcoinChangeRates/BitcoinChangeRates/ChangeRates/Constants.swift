@@ -11,7 +11,6 @@ enum Constants {
     enum Bundle {
         enum Resource {
             static let availableCurrencies = "available_currencies"
-            
         }
         
         enum Extension {
@@ -26,5 +25,14 @@ enum Constants {
     enum CellIdentifiers {
         static let addCurrencyTableViewCell = "AddCurrencyTableViewCell"
         static let changeRatesTableViewCell = "ChangeRatesTableViewCell"
+    }
+    
+    enum UserDefaults {
+        static let selectedCurrencies = "selectedCurrencies"
+    }
+    
+    enum URLRequest {
+        static let defaultUrlEmpty = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies="
+        static let defaultSelectedCurrency = ["eur", "jpy", "usd", "gbp"]
     }
 }
