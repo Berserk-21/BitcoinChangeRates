@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BundleService {
+final class BundleService {
     
     func fetchLocalData(completionHandler: @escaping ([CurrencyModel]) -> ()) {
         
