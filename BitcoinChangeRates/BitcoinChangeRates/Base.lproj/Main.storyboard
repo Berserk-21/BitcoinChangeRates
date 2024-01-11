@@ -172,6 +172,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CY1-Lv-JsV">
                                 <rect key="frame" x="0.0" y="211.33333333333331" width="393" height="606.66666666666674"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vuz-nR-abz" customClass="LoadingView" customModule="BitcoinChangeRates" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="606.66666666666663"/>
+                                    </view>
                                     <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jsI-jH-AXm">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="606.66666666666663"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -207,7 +210,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40000$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1u-37-UGY">
-                                                            <rect key="frame" x="279.66666666666669" y="22" width="93.333333333333314" height="20.333333333333329"/>
+                                                            <rect key="frame" x="311" y="22" width="62" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -221,7 +224,7 @@
                                                         <constraint firstItem="0Lb-MH-dK1" firstAttribute="leading" secondItem="A8Z-dK-d3K" secondAttribute="trailing" constant="12" id="bWx-1Z-sjT"/>
                                                         <constraint firstItem="A8Z-dK-d3K" firstAttribute="leading" secondItem="YK1-VG-RnW" secondAttribute="leading" constant="12" id="fCX-If-KbV"/>
                                                         <constraint firstItem="0Lb-MH-dK1" firstAttribute="bottom" secondItem="A8Z-dK-d3K" secondAttribute="bottom" id="fn8-2m-zFQ"/>
-                                                        <constraint firstItem="o1u-37-UGY" firstAttribute="leading" relation="lessThanOrEqual" secondItem="0Lb-MH-dK1" secondAttribute="trailing" constant="80.666666666666657" id="oHX-a7-anN"/>
+                                                        <constraint firstItem="o1u-37-UGY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0Lb-MH-dK1" secondAttribute="trailing" priority="750" id="oHX-a7-anN"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <constraints>
@@ -239,9 +242,6 @@
                                             <outlet property="dataSource" destination="F6T-49-Feo" id="fR0-zz-f3N"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vuz-nR-abz" customClass="LoadingView" customModule="BitcoinChangeRates" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="606.66666666666663"/>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
