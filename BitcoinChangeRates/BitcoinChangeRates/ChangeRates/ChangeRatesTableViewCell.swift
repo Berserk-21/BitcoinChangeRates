@@ -31,7 +31,10 @@ final class ChangeRatesTableViewCell: UITableViewCell {
         titleLabel.font = UIFont.systemFont(ofSize: 14.0, weight: .medium)
         titleLabel.textColor = .darkGray
         subtitleLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .medium)
-        valueLabel.font = UIFont.systemFont(ofSize: 18.0, weight: .semibold)
+        subtitleLabel.adjustsFontSizeToFitWidth = true
+        subtitleLabel.minimumScaleFactor = 0.5
+        
+        valueLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
     }
     
     // MARK: - Custom Methods
