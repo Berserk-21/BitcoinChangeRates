@@ -18,8 +18,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak private var tableView: UITableView!
     
-    @IBOutlet weak private var loadingView: UIView!
-    @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak private var loadingView: LoadingView!
     
     // MARK: - Life Cycle
     
@@ -27,7 +26,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         
         setupLayout()
-        
+        setupLoadingView()
         fetchData()
         subscribeNotifications()
     }
@@ -56,22 +55,29 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         navigationItem.leftBarButtonItem = leftBarButton
     }
     
-    private func updateActivityIndicator(animate: Bool) {
+    private func updateLoadingLayout(isLoading: Bool, error: Error? = nil) {
         
         DispatchQueue.main.async { [weak self] in
-            if animate {
-                self?.loadingView.isHidden = false
-                self?.activityIndicator.startAnimating()
+            
+            if let err = error {
+                self?.loadingView.displayErrorLayout(with: err)
+                self?.tableView.isHidden = true
+            } else if isLoading {
+                self?.loadingView.displayLoadingLayout()
                 self?.tableView.isHidden = true
             } else {
-                self?.loadingView.isHidden = true
-                self?.activityIndicator.stopAnimating()
+                self?.loadingView.hideLoadingLayout()
                 self?.tableView.isHidden = false
             }
         }
     }
     
     // MARK: - Custom Methods
+    
+    private func setupLoadingView() {
+        
+        loadingView.refreshButton.addTarget(self, action: #selector(fetchData), for: .touchUpInside)
+    }
     
     private func subscribeNotifications() {
         
@@ -82,7 +88,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         
         changeRateViewModel = ChangeRatesViewModel(bundleService: BundleService(), networkService: NetworkService())
         
-        updateActivityIndicator(animate: true)
+        updateLoadingLayout(isLoading: true)
         
         changeRateViewModel?.fetchData(completionHandler: { [weak self] result in
             
@@ -90,13 +96,14 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
             case .success(_):
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
+                    self?.updateLoadingLayout(isLoading: false)
                 }
             case .failure(let error):
                 // Afficher un layout d'erreur/reload
-                break
+                DispatchQueue.main.async {
+                    self?.updateLoadingLayout(isLoading: false, error: error)
+                }
             }
-            
-            self?.updateActivityIndicator(animate: false)
         })
     }
     
