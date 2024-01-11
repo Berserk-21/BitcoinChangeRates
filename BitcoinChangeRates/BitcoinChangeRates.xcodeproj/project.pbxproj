@@ -28,6 +28,7 @@
 		2CC4F35F2B4EF0430011AF00 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4F35E2B4EF0430011AF00 /* NetworkService.swift */; };
 		2CE1A56D2B4EF182007675E1 /* BundleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1A56C2B4EF182007675E1 /* BundleService.swift */; };
 		2CEDCC272B4C2BC400A864C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEDCC262B4C2BC400A864C8 /* Constants.swift */; };
+		2CFF53302B4FDDEB001AE1E6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFF532F2B4FDDEB001AE1E6 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		2CC4F35E2B4EF0430011AF00 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		2CE1A56C2B4EF182007675E1 /* BundleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleService.swift; sourceTree = "<group>"; };
 		2CEDCC262B4C2BC400A864C8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2CFF532F2B4FDDEB001AE1E6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				2C3491B52B48655400E4C402 /* ChangeRatesViewModel.swift */,
 				2C3491B72B486A7300E4C402 /* ChangeRatesModel.swift */,
 				2CEDCC262B4C2BC400A864C8 /* Constants.swift */,
+				2CFF532F2B4FDDEB001AE1E6 /* LoadingView.swift */,
 			);
 			path = ChangeRates;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				2CC4F35D2B4EAC150011AF00 /* AddCurrencyTableViewCell.swift in Sources */,
 				2C3491B62B48655400E4C402 /* ChangeRatesViewModel.swift in Sources */,
 				2C143FCB2B4D885F00E823F6 /* NumberFormatterService.swift in Sources */,
+				2CFF53302B4FDDEB001AE1E6 /* LoadingView.swift in Sources */,
 				2C8CF2892B483F7E0084F940 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

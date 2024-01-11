@@ -15,7 +15,14 @@ final class NetworkService {
         
         guard let url = getUrl() else { return }
         
-        let session = URLSession(configuration: .default)
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 15
+        
+        #if DEBUG
+        configuration.timeoutIntervalForRequest = 5
+        #endif
+        
+        let session = URLSession(configuration: configuration)
         let urlRequest = URLRequest(url: url)
         
         let task = session.dataTask(with: urlRequest) { data, response, error in

@@ -239,18 +239,8 @@
                                             <outlet property="dataSource" destination="F6T-49-Feo" id="fR0-zz-f3N"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vuz-nR-abz">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vuz-nR-abz" customClass="LoadingView" customModule="BitcoinChangeRates" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="606.66666666666663"/>
-                                        <subviews>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="a64-Fm-G7z">
-                                                <rect key="frame" x="178" y="285" width="37" height="37"/>
-                                                <color key="color" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </activityIndicatorView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="a64-Fm-G7z" firstAttribute="centerY" secondItem="Vuz-nR-abz" secondAttribute="centerY" id="aal-fa-w4t"/>
-                                            <constraint firstItem="a64-Fm-G7z" firstAttribute="centerX" secondItem="Vuz-nR-abz" secondAttribute="centerX" id="mAR-U0-Lg1"/>
-                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -282,7 +272,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="BQe-7T-jDG"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="a64-Fm-G7z" id="pIX-B5-9dt"/>
                         <outlet property="bitcoinAmountLabel" destination="IwD-7b-q5I" id="uEI-hE-xJm"/>
                         <outlet property="bitcoinSymbolLabel" destination="W6m-bM-xEy" id="jH0-nH-9v5"/>
                         <outlet property="loadingView" destination="Vuz-nR-abz" id="HKS-OL-wUj"/>

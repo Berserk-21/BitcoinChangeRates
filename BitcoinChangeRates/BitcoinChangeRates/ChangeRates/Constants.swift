@@ -34,9 +34,13 @@ enum Constants {
     enum URLRequest {
         static let defaultUrlEmpty = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies="
         static let defaultSelectedCurrency = ["eur", "jpy", "usd", "gbp"]
+        static let loadingText = "Getting prices from CoinGecko.."
+        static let reloadText = "Reload"
+        static let requestTimedOut = "Please check your network connection and try again."
     }
     
     enum Notifications {
         static let shouldFetchData = "shouldFetchData"
     }
+    
 }
