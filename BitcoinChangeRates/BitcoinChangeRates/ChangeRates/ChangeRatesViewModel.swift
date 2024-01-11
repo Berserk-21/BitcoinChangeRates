@@ -9,45 +9,45 @@ import Foundation
 
 final class ChangeRatesViewModel {
     
+    // MARK: - Properties
+    
+    let bundleService: BundleService
+    let networkService: NetworkService
+    
     var changeRates: [ChangeRatesModel] = []
-    
+    var allCurrencies: [CurrencyModel]?
+
     private var bitcoinPrices: BitcoinPricesModel?
-    private var currencies: [CurrencyModel]?
+    private let userDefaults = UserDefaults.standard
     
-    func fetchData(completionHandler: @escaping (Bool) -> ()) {
+    init(bundleService: BundleService, networkService: NetworkService) {
+        self.bundleService = bundleService
+        self.networkService = networkService
+    }
+    
+    func fetchData(completionHandler: @escaping (Result<Bool, Error>) -> ()) {
         
-        fetchLocalData()
-        
-        guard let url = getUrl() else { return }
-        
-        let session = URLSession(configuration: .default)
-        let urlRequest = URLRequest(url: url)
-        
-        let task = session.dataTask(with: urlRequest) { data, response, error in
+        bundleService.fetchLocalData { [weak self] currencies in
+            self?.allCurrencies = currencies
             
-            if let err = error {
-                print("There was an error with the dataTask: \(err)")
-                completionHandler(false)
-            }
-            
-            guard let unwrappedData = data else { return }
-            
-            do {
-                self.bitcoinPrices = try JSONDecoder().decode(BitcoinPricesModel.self, from: unwrappedData)
-                self.prepareChangeRates()
-                completionHandler(true)
-            } catch {
-                print(error)
-                completionHandler(false)
+            self?.networkService.fetchData { result in
+                
+                switch result {
+                case .success(let bitcoinPrices):
+                    self?.bitcoinPrices = bitcoinPrices
+                    self?.prepareChangeRates()
+                    self?.updateIsSelectedState()
+                    completionHandler(.success(true))
+                case .failure(let err):
+                    completionHandler(.failure(err))
+                }
             }
         }
-        
-        task.resume()
     }
     
     private func prepareChangeRates() {
         
-        guard let unwrappedCurrencies = currencies else { return }
+        guard let unwrappedCurrencies = allCurrencies else { return }
         guard let unwrappedBitcoinPrices = bitcoinPrices else { return }
         
         var changeRates: [ChangeRatesModel] = []
@@ -67,27 +67,14 @@ final class ChangeRatesViewModel {
         self.changeRates = changeRates
     }
     
-    private func getUrl() -> URL? {
+    private func updateIsSelectedState() {
         
-        let urlString = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur%2Cjpy%2Cusd%2Caud%2Ccad%2Cchf%2Cgbp%2Cnzd"
+        let isocodes = bitcoinPrices?.bitcoin.keys
         
-        guard let url = URL(string: urlString) else { return nil }
-        
-        return url
-    }
-    
-    private func fetchLocalData() {
-        
-        guard let url = Bundle.main.url(forResource: Constants.Keys.availableCurrencies, withExtension: "json") else { return }
-        
-        do {
-            let data = try Data(contentsOf: url)
-            let currencies = try JSONDecoder().decode([CurrencyModel].self, from: data)
-            
-            self.currencies = currencies
-            
-        } catch {
-            print(error)
+        isocodes?.forEach { isocode in
+            if let index = allCurrencies?.firstIndex(where: { $0.isocode == isocode }) {
+                allCurrencies?[index].isSelected = true
+            }
         }
     }
     

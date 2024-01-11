@@ -7,9 +7,9 @@
 
 import Foundation
 
-final class CustomNumberFormatter: NSObject {
+final class NumberFormatterService: NSObject {
     
-    static let shared = CustomNumberFormatter()
+    static let shared = NumberFormatterService()
     
     let priceFormatter: NumberFormatter
     

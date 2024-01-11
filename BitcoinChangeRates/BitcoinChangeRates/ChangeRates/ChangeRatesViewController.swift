@@ -18,6 +18,9 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak private var tableView: UITableView!
     
+    @IBOutlet weak private var loadingView: UIView!
+    @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -26,6 +29,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         setupLayout()
         
         fetchData()
+        subscribeNotifications()
     }
     
     // MARK: - Setup Layout
@@ -33,6 +37,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     private func setupLayout() {
         
         setupHeaderView()
+        setupLeftBarButton()
     }
     
     private func setupHeaderView() {
@@ -44,21 +49,76 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         bitcoinSymbolLabel.textColor = .orange
     }
     
+    private func setupLeftBarButton() {
+        
+        let leftBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddCurrency))
+        
+        navigationItem.leftBarButtonItem = leftBarButton
+    }
+    
+    private func updateActivityIndicator(animate: Bool) {
+        
+        DispatchQueue.main.async { [weak self] in
+            if animate {
+                self?.loadingView.isHidden = false
+                self?.activityIndicator.startAnimating()
+                self?.tableView.isHidden = true
+            } else {
+                self?.loadingView.isHidden = true
+                self?.activityIndicator.stopAnimating()
+                self?.tableView.isHidden = false
+            }
+        }
+    }
+    
     // MARK: - Custom Methods
     
-    private func fetchData() {
+    private func subscribeNotifications() {
         
-        changeRateViewModel = ChangeRatesViewModel()
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchData), name: NSNotification.Name(Constants.Notifications.shouldFetchData), object: nil)
+    }
+    
+    @objc private func fetchData() {
         
-        changeRateViewModel?.fetchData(completionHandler: { [weak self] success in
-            if success {
+        changeRateViewModel = ChangeRatesViewModel(bundleService: BundleService(), networkService: NetworkService())
+        
+        updateActivityIndicator(animate: true)
+        
+        changeRateViewModel?.fetchData(completionHandler: { [weak self] result in
+            
+            switch result {
+            case .success(_):
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
-            } else {
+            case .failure(let error):
                 // Afficher un layout d'erreur/reload
+                break
             }
+            
+            self?.updateActivityIndicator(animate: false)
         })
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func didTapAddCurrency() {
+        
+        performSegue(withIdentifier: Constants.SegueIdentifiers.fromChangeRatesToAddCurrency, sender: nil)
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.identifier {
+        case Constants.SegueIdentifiers.fromChangeRatesToAddCurrency:
+            if let navigationController = segue.destination as? UINavigationController, let addCurrencyVC = navigationController.topViewController as? AddCurrencyViewController {
+                addCurrencyVC.viewModel = self.changeRateViewModel
+            }
+        default:
+            break
+        }
     }
     
     // MARK: - UITableView DataSource
