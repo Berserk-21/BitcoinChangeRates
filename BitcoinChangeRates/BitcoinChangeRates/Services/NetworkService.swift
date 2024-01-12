@@ -25,6 +25,10 @@ final class NetworkService {
         let session = URLSession(configuration: configuration)
         let urlRequest = URLRequest(url: url)
         
+        #if DEBUG
+        print("send request for url: \(url.absoluteString)")
+        #endif
+        
         let task = session.dataTask(with: urlRequest) { data, response, error in
             
             if let err = error {
@@ -33,6 +37,12 @@ final class NetworkService {
             }
             
             guard let unwrappedData = data else { return }
+            
+            #if DEBUG
+            if let string = String(data: unwrappedData, encoding: .utf8) {
+                print(string)
+            }
+            #endif
             
             do {
                 let bitcoinPrices = try JSONDecoder().decode(BitcoinPricesModel.self, from: unwrappedData)

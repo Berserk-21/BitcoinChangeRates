@@ -111,12 +111,27 @@ final class LoadingView: UIView {
     
     /// Displays the loadingView with a reload button and present the error reason.
     func displayErrorLayout(with error: Error) {
+        
+        var errorText = Constants.URLRequest.requestTimedOut
+        
+        let err = error as NSError
+        
+        switch err.code {
+        case 4865:
+            // API limit exceeded, wait 60sec.
+            errorText = Constants.URLRequest.exceeded60secLimit
+        default:
+            #if DEBUG
+            print(err)
+            #endif
+            break
+        }
                 
         isHidden = false
         isUserInteractionEnabled = true
 
         activityIndicator.stopAnimating()
         buttonContainerView.isHidden = false
-        errorLabel.text = Constants.URLRequest.requestTimedOut
+        errorLabel.text = errorText
     }
 }

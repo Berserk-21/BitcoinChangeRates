@@ -37,6 +37,7 @@ enum Constants {
         static let loadingText = "Getting prices from CoinGecko.."
         static let reloadText = "Reload"
         static let requestTimedOut = "Please check your network connection and try again."
+        static let exceeded60secLimit = "Please wait 60 seconds to refresh price."
     }
     
     enum Notifications {
