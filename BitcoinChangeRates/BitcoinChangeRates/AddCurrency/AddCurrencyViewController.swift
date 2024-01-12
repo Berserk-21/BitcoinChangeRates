@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AddCurrencyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+final class AddCurrencyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     // MARK: - Properties
     
@@ -15,8 +15,6 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     @IBOutlet weak private var searchBar: UISearchBar!
     @IBOutlet weak private var tableView: UITableView!
-    
-    private var shouldFetchData: Bool = false
     
     private let userDefaults = UserDefaults.standard
     
@@ -26,6 +24,7 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
         super.viewDidLoad()
         
         setupLayout()
+        setupSearchBar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,6 +50,8 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     private func setupSearchBar() {
         
         searchBar.placeholder = "Search a currency.."
+        searchBar.autocapitalizationType = .none
+        searchBar.delegate = self
     }
     
     // MARK: - Helper Methods
@@ -63,7 +64,7 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     private func sendNotificationIfNeeded() {
         
-        if shouldFetchData {
+        if let shouldFetchData = viewModel?.shouldFetchData, shouldFetchData {
             NotificationCenter.default.post(name: NSNotification.Name(Constants.Notifications.shouldFetchData), object: nil)
         }
     }
@@ -79,14 +80,14 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return viewModel?.allCurrencies?.count ?? 0
+        return viewModel?.getCurrencies().count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AddCurrencyTableViewCell.identifier, for: indexPath) as? AddCurrencyTableViewCell else { return UITableViewCell() }
         
-        if let model = viewModel?.allCurrencies {
+        if let model = viewModel?.getCurrencies() {
             cell.configure(at: indexPath, with: model)
         }
         
@@ -95,15 +96,13 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let item = viewModel?.allCurrencies?[indexPath.row] else { return }
+        guard let item = viewModel?.getCurrencies()[indexPath.row] else { return }
         
         updateUserDefaults(for: item)
 
-        viewModel?.allCurrencies?[indexPath.row].isSelected.toggle()
+        viewModel?.didSelect(item: item)
         
         reloadRow(at: indexPath)
-        
-        shouldFetchData = true
     }
     
     private func updateUserDefaults(for item: CurrencyModel) {
@@ -120,6 +119,17 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
             
             userDefaults.setValue(userCurrencies, forKey: Constants.UserDefaults.selectedCurrencies)
         }
-        
     }
+    
+    // MARK: - UISearchResultsUpdating
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        viewModel?.filter(with: searchText)
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
 }

@@ -26,6 +26,11 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         setupLayout()
         setupLoadingView()
         fetchData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         subscribeNotifications()
     }
     
