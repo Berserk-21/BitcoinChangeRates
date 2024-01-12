@@ -31,7 +31,7 @@ final class ChangeRatesViewModel {
     func fetchData(completionHandler: @escaping (Result<Bool, Error>) -> ()) {
         
         bundleService.fetchLocalData { [weak self] currencies in
-            self?.allCurrencies = currencies
+            self?.allCurrencies = currencies.sorted(by: { $0.isocode < $1.isocode })
             
             self?.networkService.fetchData { result in
                 
@@ -66,7 +66,7 @@ final class ChangeRatesViewModel {
             }
         }
         
-        self.changeRates = changeRates
+        self.changeRates = changeRates.sorted(by: { $0.isocode < $1.isocode })
     }
     
     private func updateIsSelectedState() {
@@ -89,7 +89,7 @@ final class ChangeRatesViewModel {
             return
         }
         
-        filteredCurrencies = allCurrencies.filter( {$0.isocode.lowercased().contains(searchText.lowercased()) || $0.name.lowercased().contains(searchText.lowercased())} )
+        filteredCurrencies = allCurrencies.filter( {$0.isocode.lowercased().contains(searchText.lowercased()) || $0.name.lowercased().contains(searchText.lowercased())} ).sorted(by: { $0.isocode < $1.isocode })
     }
     
     func getCurrencies() -> [CurrencyModel] {
