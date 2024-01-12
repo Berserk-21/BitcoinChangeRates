@@ -15,9 +15,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak private var bitcoinAmountLabel: UILabel!
     @IBOutlet weak private var bitcoinSymbolLabel: UILabel!
-    
     @IBOutlet weak private var tableView: UITableView!
-    
     @IBOutlet weak private var loadingView: LoadingView!
     
     // MARK: - Life Cycle
@@ -133,6 +131,12 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChangeRatesTableViewCell.identifier, for: indexPath) as? ChangeRatesTableViewCell else { return UITableViewCell() }
+        
+        guard indexPath.row < changeRateViewModel?.changeRates.count ?? 0 else {
+            #if DEBUG
+            print("changeRates index out of range")
+            #endif
+            return UITableViewCell() }
         
         if let model = changeRateViewModel?.changeRates[indexPath.row] {
             cell.configureCell(with: model)
