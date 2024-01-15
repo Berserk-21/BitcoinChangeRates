@@ -15,11 +15,11 @@ final class ChangeRatesViewModel {
     let networkService: NetworkService
     
     var changeRates: [ChangeRatesModel] = []
+    
     var allCurrencies: [CurrencyModel] = []
     var filteredCurrencies: [CurrencyModel] = []
     private var searchText: String = ""
 
-    private var bitcoinPrices: BitcoinPricesModel?
     private let userDefaults = UserDefaults.standard
     var shouldFetchData: Bool = false
     
@@ -31,51 +31,18 @@ final class ChangeRatesViewModel {
     func fetchData(completionHandler: @escaping (Result<Bool, Error>) -> ()) {
         
         bundleService.fetchLocalData { [weak self] currencies in
-            self?.allCurrencies = currencies.sorted(by: { $0.isocode < $1.isocode })
             
-            self?.networkService.fetchData { result in
+            self?.networkService.fetchData(with: currencies) { result in
+                
+                self?.allCurrencies = currencies
                 
                 switch result {
-                case .success(let bitcoinPrices):
-                    self?.bitcoinPrices = bitcoinPrices
-                    self?.prepareChangeRates()
-                    self?.updateIsSelectedState()
+                case .success(let changeRates):
+                    self?.changeRates = changeRates
                     completionHandler(.success(true))
                 case .failure(let err):
                     completionHandler(.failure(err))
                 }
-            }
-        }
-    }
-    
-    private func prepareChangeRates() {
-        
-        guard let unwrappedBitcoinPrices = bitcoinPrices else { return }
-        
-        var changeRates: [ChangeRatesModel] = []
-        
-        unwrappedBitcoinPrices.bitcoin.forEach { element in
-            
-            let isocode = element.key
-            let price = element.value
-            
-            if let currency = allCurrencies.first(where: { $0.isocode == isocode }) {
-                
-                let changeRate = ChangeRatesModel(name: currency.name, isocode: currency.isocode, localeId: currency.localeId, price: price)
-                changeRates.append(changeRate)
-            }
-        }
-        
-        self.changeRates = changeRates.sorted(by: { $0.isocode < $1.isocode })
-    }
-    
-    private func updateIsSelectedState() {
-        
-        let isocodes = bitcoinPrices?.bitcoin.keys
-        
-        isocodes?.forEach { isocode in
-            if let index = allCurrencies.firstIndex(where: { $0.isocode == isocode }) {
-                allCurrencies[index].isSelected = true
             }
         }
     }
