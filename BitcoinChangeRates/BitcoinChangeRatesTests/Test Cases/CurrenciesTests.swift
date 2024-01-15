@@ -22,7 +22,7 @@ final class CurrenciesTests: XCTestCase {
             
             self.currenciesModel = currencies
         } catch {
-            print(error)
+            DebugLogService.log(error)
         }
     }
 

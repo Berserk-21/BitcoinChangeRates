@@ -139,7 +139,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         
         guard indexPath.row < changeRateViewModel?.changeRates.count ?? 0 else {
             #if DEBUG
-            print("changeRates index out of range")
+            DebugLogService.log("changeRates index out of range")
             #endif
             return UITableViewCell() }
         

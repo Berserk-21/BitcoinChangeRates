@@ -25,24 +25,18 @@ final class NetworkService {
         let session = URLSession(configuration: configuration)
         let urlRequest = URLRequest(url: url)
         
-        #if DEBUG
-        print("send request for url: \(url.absoluteString)")
-        #endif
+        DebugLogService.log("send request for url: \(url.absoluteString)")
         
         let task = session.dataTask(with: urlRequest) { data, response, error in
             
             if let err = error {
-                print("There was an error with the dataTask: \(err)")
+                DebugLogService.log("There was an error with the dataTask: \(err)")
                 completionHandler(.failure(err))
             }
             
             guard let unwrappedData = data else { return }
             
-            #if DEBUG
-            if let string = String(data: unwrappedData, encoding: .utf8) {
-                print(string)
-            }
-            #endif
+            DebugLogService.log(unwrappedData)
             
             do {
                 let bitcoinPrices = try JSONDecoder().decode(BitcoinPricesModel.self, from: unwrappedData)
