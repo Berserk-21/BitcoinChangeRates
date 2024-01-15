@@ -20,7 +20,7 @@ final class BundleService {
             completionHandler(allCurrencies)
             
         } catch {
-            print(error)
+            DebugLogService.log(error)
         }
     }
 }

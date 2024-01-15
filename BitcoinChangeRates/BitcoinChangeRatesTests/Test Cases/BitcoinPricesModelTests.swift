@@ -20,7 +20,7 @@ final class BitcoinPricesModelTests: XCTestCase {
         do {
             self.bitcoinPrices = try JSONDecoder().decode(BitcoinPricesModel.self, from: data)
         } catch {
-            print(error)
+            DebugLogService.log(error)
         }
     }
     

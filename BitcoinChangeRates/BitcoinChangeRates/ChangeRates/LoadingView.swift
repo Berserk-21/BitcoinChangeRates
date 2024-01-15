@@ -122,7 +122,7 @@ final class LoadingView: UIView {
             errorText = Constants.URLRequest.exceeded60secLimit
         default:
             #if DEBUG
-            print(err)
+            DebugLogService.log(err)
             #endif
             break
         }
