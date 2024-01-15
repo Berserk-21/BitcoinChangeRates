@@ -11,7 +11,7 @@ final class NetworkService {
     
     let userDefaults = UserDefaults.standard
     
-    func fetchData(completionHandler: @escaping (Result<BitcoinPricesModel, Error>) -> ()) {
+    func fetchData(with currencies: [CurrencyModel], completionHandler: @escaping (Result<[ChangeRatesModel], Error>) -> ()) {
         
         guard let url = getUrl() else { return }
         
@@ -40,14 +40,33 @@ final class NetworkService {
             
             do {
                 let bitcoinPrices = try JSONDecoder().decode(BitcoinPricesModel.self, from: unwrappedData)
-                
-                completionHandler(.success(bitcoinPrices))
+                let changeRates = self.prepareChangeRates(for: bitcoinPrices, with: currencies)
+                completionHandler(.success(changeRates))
             } catch {
                 completionHandler(.failure(error))
             }
         }
         
         task.resume()
+    }
+    
+    private func prepareChangeRates(for bitcoinPrices: BitcoinPricesModel, with currencies: [CurrencyModel]) -> [ChangeRatesModel] {
+        
+        var changeRates: [ChangeRatesModel] = []
+        
+        bitcoinPrices.bitcoin.forEach { element in
+            
+            let isocode = element.key
+            let price = element.value
+            
+            if let currency = currencies.first(where: { $0.isocode == isocode }) {
+                
+                let changeRate = ChangeRatesModel(name: currency.name, isocode: currency.isocode, localeId: currency.localeId, price: price)
+                changeRates.append(changeRate)
+            }
+        }
+        
+        return changeRates.sorted(by: { $0.isocode < $1.isocode })
     }
     
     private func getUrl() -> URL? {
@@ -81,6 +100,29 @@ final class NetworkService {
     }
     
     private func getSelectedCurrencies() -> [String] {
+        
+        let selectedCurrencies: [String]
+        
+        if let userCurrencies = userDefaults.object(forKey: Constants.UserDefaults.selectedCurrencies) as? [String] {
+            // Use user selected currencies
+            selectedCurrencies = userCurrencies
+        } else {
+            // Use default state
+            selectedCurrencies = Constants.URLRequest.defaultSelectedCurrency
+            
+            // set default state in UserDefaults
+            userDefaults.set(selectedCurrencies, forKey: Constants.UserDefaults.selectedCurrencies)
+        }
+        
+        return selectedCurrencies
+    }
+}
+
+extension UserDefaults {
+    
+    static func getSelectedCurrencies() -> [String] {
+        
+        let userDefaults = UserDefaults.standard
         
         let selectedCurrencies: [String]
         

@@ -16,11 +16,28 @@ final class BundleService {
         do {
             let data = try Data(contentsOf: url)
             let allCurrencies = try JSONDecoder().decode([CurrencyModel].self, from: data)
-            
-            completionHandler(allCurrencies)
+            let updatedCurrencies = updateIsSelectedState(for: allCurrencies)
+            completionHandler(updatedCurrencies)
             
         } catch {
             DebugLogService.log(error)
         }
     }
+    
+    private func updateIsSelectedState(for currencies: [CurrencyModel]) -> [CurrencyModel] {
+        
+        let isocodes = UserDefaults.getSelectedCurrencies()
+
+        let updatedCurrencies = currencies.map { currency in
+            
+            var updatedCurrency = currency
+            
+            updatedCurrency.isSelected = isocodes.contains(currency.isocode)
+            
+            return updatedCurrency
+        }
+        
+        return updatedCurrencies.sorted(by: { $0.isocode < $1.isocode })
+    }
+    
 }
