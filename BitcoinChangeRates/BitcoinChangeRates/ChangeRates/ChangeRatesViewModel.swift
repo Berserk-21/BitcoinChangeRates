@@ -20,7 +20,6 @@ final class ChangeRatesViewModel {
     var filteredCurrencies: [CurrencyModel] = []
     private var searchText: String = ""
 
-    private let userDefaults = UserDefaults.standard
     var shouldFetchData: Bool = false
     
     init(bundleService: BundleService, networkService: NetworkService) {
