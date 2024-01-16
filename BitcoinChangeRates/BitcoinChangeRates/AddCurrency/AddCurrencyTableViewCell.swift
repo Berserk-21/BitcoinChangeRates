@@ -38,6 +38,8 @@ final class AddCurrencyTableViewCell: UITableViewCell {
     
     func configure(at indexPath: IndexPath, with model: [CurrencyModel]) {
         
+        guard indexPath.row < model.count else { return }
+        
         let model = model[indexPath.row]
         
         flagImageView.image = UIImage(named: model.isocode.uppercased())

@@ -96,7 +96,9 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let item = viewModel?.getCurrencies()[indexPath.row] else { return }
+        guard let currencies = viewModel?.getCurrencies(), indexPath.row < currencies.count else { return }
+        
+        let item = currencies[indexPath.row]
         
         updateUserDefaults(for: item)
 
