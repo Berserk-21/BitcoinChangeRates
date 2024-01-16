@@ -71,13 +71,16 @@ final class ChangeRatesViewModel {
         
         if let index = allCurrencies.firstIndex(where: { $0.isocode == item.isocode }) {
             allCurrencies[index].isSelected.toggle()
+            
+            shouldFetchData = true
         }
         
         if let filteredIndex = filteredCurrencies.firstIndex(where: { $0.isocode == item.isocode }) {
             filteredCurrencies[filteredIndex].isSelected.toggle()
+            
+            shouldFetchData = true
         }
         
-        shouldFetchData = true
     }
     
 }
