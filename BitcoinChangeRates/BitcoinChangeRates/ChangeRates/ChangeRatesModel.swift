@@ -27,7 +27,7 @@ struct BitcoinPricesModel: Decodable {
     let bitcoin: [String: Double]
 }
 
-struct CurrencyModel: Decodable {
+struct CurrencyModel: Decodable, Equatable {
     let name: String
     let isocode: String
     let localeId: String
