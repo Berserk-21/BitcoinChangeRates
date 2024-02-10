@@ -29,7 +29,7 @@ final class AddCurrencyTableViewCell: UITableViewCell {
     private func setupLayout() {
         
         titleLabel.font = UIFont.systemFont(ofSize: 14.0, weight: .medium)
-        titleLabel.textColor = .darkGray
+        titleLabel.textColor = UIColor.secondaryLabel
         
         subtitleLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .medium)
     }

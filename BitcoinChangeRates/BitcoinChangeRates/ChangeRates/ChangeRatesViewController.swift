@@ -45,7 +45,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     private func setupHeaderView() {
         
         bitcoinAmountLabel.font = UIFont.systemFont(ofSize: 64.0, weight: .medium)
-        bitcoinAmountLabel.textColor = .black
+        bitcoinAmountLabel.textColor = UIColor.label
         
         bitcoinSymbolLabel.font = UIFont.systemFont(ofSize: 48.0, weight: .medium)
         bitcoinSymbolLabel.textColor = .orange

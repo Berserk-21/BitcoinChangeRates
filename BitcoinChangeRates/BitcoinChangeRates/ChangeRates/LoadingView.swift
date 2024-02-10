@@ -35,7 +35,7 @@ final class LoadingView: UIView {
     
     let refreshButton = {
         let button = UIButton()
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(UIColor.label, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(NSAttributedString(string: Constants.URLRequest.reloadText, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18.0, weight: .semibold)]), for: .normal)
         return button
