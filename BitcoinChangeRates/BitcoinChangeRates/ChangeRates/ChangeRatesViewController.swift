@@ -17,6 +17,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak private var bitcoinSymbolLabel: UILabel!
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var loadingView: LoadingView!
+    @IBOutlet weak private var headerBottomSeparatorView: UIView!
     
     // MARK: - Life Cycle
     
@@ -48,6 +49,8 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         
         bitcoinSymbolLabel.font = UIFont.systemFont(ofSize: 48.0, weight: .medium)
         bitcoinSymbolLabel.textColor = .orange
+        
+        headerBottomSeparatorView.backgroundColor = tableView.separatorColor
     }
     
     private func updateLoadingLayout(isLoading: Bool, error: Error? = nil) {

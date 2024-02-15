@@ -173,11 +173,21 @@
                                             <action selector="didTapAddCurrency" destination="F6T-49-Feo" eventType="touchUpInside" id="RCG-3M-MHp"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOX-aA-kN9">
+                                        <rect key="frame" x="0.0" y="107.66666666666666" width="393" height="1"/>
+                                        <color key="backgroundColor" systemColor="separatorColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="BdL-vS-KMv"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="W6m-bM-xEy" firstAttribute="top" secondItem="RBu-se-VQo" secondAttribute="top" id="5fu-ec-7nV"/>
+                                    <constraint firstAttribute="bottom" secondItem="KOX-aA-kN9" secondAttribute="bottom" id="87P-yd-MDl"/>
                                     <constraint firstItem="Wh4-jC-QrZ" firstAttribute="centerY" secondItem="RBu-se-VQo" secondAttribute="centerY" id="Bf3-GN-fXp"/>
                                     <constraint firstItem="W6m-bM-xEy" firstAttribute="leading" secondItem="IwD-7b-q5I" secondAttribute="trailing" constant="8" symbolic="YES" id="Gsa-Dc-anf"/>
+                                    <constraint firstAttribute="trailing" secondItem="KOX-aA-kN9" secondAttribute="trailing" id="IQY-Ae-Goc"/>
+                                    <constraint firstItem="KOX-aA-kN9" firstAttribute="leading" secondItem="RBu-se-VQo" secondAttribute="leading" id="LRC-SA-bGX"/>
                                     <constraint firstAttribute="bottom" secondItem="IwD-7b-q5I" secondAttribute="bottom" constant="16" id="MYz-wg-UdH"/>
                                     <constraint firstItem="Wh4-jC-QrZ" firstAttribute="leading" secondItem="RBu-se-VQo" secondAttribute="leading" constant="16" id="f2L-CZ-J4W"/>
                                     <constraint firstAttribute="trailing" secondItem="W6m-bM-xEy" secondAttribute="trailing" constant="16" id="oG1-CW-bG4"/>
@@ -288,6 +298,7 @@
                     <connections>
                         <outlet property="bitcoinAmountLabel" destination="IwD-7b-q5I" id="uEI-hE-xJm"/>
                         <outlet property="bitcoinSymbolLabel" destination="W6m-bM-xEy" id="jH0-nH-9v5"/>
+                        <outlet property="headerBottomSeparatorView" destination="KOX-aA-kN9" id="F8L-KT-Vbd"/>
                         <outlet property="loadingView" destination="Vuz-nR-abz" id="HKS-OL-wUj"/>
                         <outlet property="tableView" destination="jsI-jH-AXm" id="BMQ-ez-PT4"/>
                         <segue destination="Z07-df-1kp" kind="presentation" identifier="FromChangeRatesToAddCurrency" id="RNL-Gd-ZU0"/>
@@ -300,6 +311,9 @@
     </scenes>
     <resources>
         <image name="add50" width="40.625" height="40.307598114013672"/>
+        <systemColor name="separatorColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
