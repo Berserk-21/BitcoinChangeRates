@@ -47,7 +47,7 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     private func setupSearchBar() {
         
-        searchBar.placeholder = "Search a currency.."
+        searchBar.placeholder = Constants.AddCurrency.searchBar_placeholder
         searchBar.autocapitalizationType = .none
         searchBar.delegate = self
     }
