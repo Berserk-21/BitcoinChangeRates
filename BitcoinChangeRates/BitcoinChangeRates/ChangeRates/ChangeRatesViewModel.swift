@@ -71,6 +71,8 @@ final class ChangeRatesViewModel {
     
     func didSelect(item: CurrencyModel) {
         
+        guard isSelectable(item: item) else { return }
+        
         if let index = allCurrencies.firstIndex(where: { $0.isocode == item.isocode }) {
             allCurrencies[index].isSelected.toggle()
             
@@ -84,6 +86,22 @@ final class ChangeRatesViewModel {
         }
         
         updateUserDefaults(for: item)
+    }
+    
+    private func isSelectable(item: CurrencyModel) -> Bool {
+        
+        // An unselected item can always be selected
+        if !item.isSelected {
+            return true
+        }
+        
+        // A selected item can only be unselected if there are 2 selected items.
+        if allCurrencies.filter({ $0.isSelected }).count > 2 {
+            return true
+        }
+        
+        // This item cannot be selected.
+        return false
     }
     
     private func updateUserDefaults(for item: CurrencyModel) {
