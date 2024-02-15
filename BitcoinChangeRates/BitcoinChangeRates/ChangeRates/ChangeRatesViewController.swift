@@ -17,6 +17,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak private var bitcoinSymbolLabel: UILabel!
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak private var loadingView: LoadingView!
+    @IBOutlet weak private var headerBottomSeparatorView: UIView!
     
     // MARK: - Life Cycle
     
@@ -39,7 +40,6 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     private func setupLayout() {
         
         setupHeaderView()
-        setupLeftBarButton()
     }
     
     private func setupHeaderView() {
@@ -49,13 +49,8 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         
         bitcoinSymbolLabel.font = UIFont.systemFont(ofSize: 48.0, weight: .medium)
         bitcoinSymbolLabel.textColor = .orange
-    }
-    
-    private func setupLeftBarButton() {
         
-        let leftBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddCurrency))
-        
-        navigationItem.leftBarButtonItem = leftBarButton
+        headerBottomSeparatorView.backgroundColor = tableView.separatorColor
     }
     
     private func updateLoadingLayout(isLoading: Bool, error: Error? = nil) {
@@ -112,7 +107,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
     // MARK: - Actions
     
-    @objc private func didTapAddCurrency() {
+    @IBAction private func didTapAddCurrency() {
         
         performSegue(withIdentifier: Constants.SegueIdentifiers.fromChangeRatesToAddCurrency, sender: nil)
     }
