@@ -132,13 +132,13 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChangeRatesTableViewCell.identifier, for: indexPath) as? ChangeRatesTableViewCell else { return UITableViewCell() }
         
-        guard indexPath.row < changeRateViewModel?.changeRates.count ?? 0 else {
+        guard indexPath.row < changeRateViewModel?.selectedChangeRates.count ?? 0 else {
             #if DEBUG
             DebugLogService.log("changeRates index out of range")
             #endif
             return UITableViewCell() }
         
-        if let model = changeRateViewModel?.changeRates[indexPath.row] {
+        if let model = changeRateViewModel?.selectedChangeRates[indexPath.row] {
             cell.configureCell(with: model)
         }
         
@@ -147,6 +147,6 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return changeRateViewModel?.changeRates.count ?? 0
+        return changeRateViewModel?.selectedChangeRates.count ?? 0
     }
 }

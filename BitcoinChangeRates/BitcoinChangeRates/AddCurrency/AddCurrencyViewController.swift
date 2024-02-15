@@ -80,27 +80,25 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return viewModel?.getCurrencies().count ?? 0
+        return viewModel?.getChangeRates().count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AddCurrencyTableViewCell.identifier, for: indexPath) as? AddCurrencyTableViewCell else { return UITableViewCell() }
         
-        if let model = viewModel?.getCurrencies() {
+        if let model = viewModel?.getChangeRates() {
             cell.configure(at: indexPath, with: model)
         }
         
         return cell
     }
     
+    // MARK: - UITalbleView Delegate
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let currencies = viewModel?.getCurrencies(), indexPath.row < currencies.count else { return }
-        
-        let item = currencies[indexPath.row]
-        
-        viewModel?.didSelect(item: item)
+        viewModel?.didSelectRowAt(indexPath: indexPath)
         
         reloadRow(at: indexPath)
     }
@@ -109,7 +107,7 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        viewModel?.filter(with: searchText)
+        viewModel?.searchTextDidChange(with: searchText)
         
         DispatchQueue.main.async {
             self.tableView.reloadData()

@@ -9,6 +9,7 @@ import Foundation
 
 final class BundleService {
     
+    // Get all currencies data from Bundle.
     func fetchLocalData(completionHandler: @escaping ([CurrencyModel]) -> ()) {
         
         guard let url = Bundle.main.url(forResource: Constants.Bundle.Resource.availableCurrencies, withExtension: Constants.Bundle.Extension.json) else { return }
@@ -16,28 +17,11 @@ final class BundleService {
         do {
             let data = try Data(contentsOf: url)
             let allCurrencies = try JSONDecoder().decode([CurrencyModel].self, from: data)
-            let updatedCurrencies = updateIsSelectedState(for: allCurrencies)
-            completionHandler(updatedCurrencies)
+            completionHandler(allCurrencies)
             
         } catch {
             DebugLogService.log(error)
         }
-    }
-    
-    private func updateIsSelectedState(for currencies: [CurrencyModel]) -> [CurrencyModel] {
-        
-        let isocodes = UserDefaults.getSelectedCurrencies()
-
-        let updatedCurrencies = currencies.map { currency in
-            
-            var updatedCurrency = currency
-            
-            updatedCurrency.isSelected = isocodes.contains(currency.isocode)
-            
-            return updatedCurrency
-        }
-        
-        return updatedCurrencies.sorted(by: { $0.isocode < $1.isocode })
     }
     
 }
