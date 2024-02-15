@@ -46,6 +46,7 @@ enum Constants {
     
     enum AddCurrency {
         static let searchBar_placeholder = "Currency or code.."
+        static let title = "Add a Currency"
     }
     
 }

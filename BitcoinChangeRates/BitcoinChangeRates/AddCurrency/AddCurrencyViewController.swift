@@ -35,6 +35,8 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     private func setupLayout() {
         
+        title = Constants.AddCurrency.title
+        
         setupNavBar()
         setupSearchBar()
     }
