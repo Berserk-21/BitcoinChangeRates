@@ -39,6 +39,8 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
     private func setupLayout() {
         
+        title = Constants.ChangeRates.title
+        
         setupHeaderView()
     }
     

@@ -49,4 +49,8 @@ enum Constants {
         static let title = "Add a Currency"
     }
     
+    enum ChangeRates {
+        static let title = "Bitcoin Live Prices"
+    }
+    
 }
