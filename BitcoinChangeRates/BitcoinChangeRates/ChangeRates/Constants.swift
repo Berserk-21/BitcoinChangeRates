@@ -44,4 +44,8 @@ enum Constants {
         static let shouldFetchData = "shouldFetchData"
     }
     
+    enum AddCurrency {
+        static let searchBar_placeholder = "Currency or code.."
+    }
+    
 }
