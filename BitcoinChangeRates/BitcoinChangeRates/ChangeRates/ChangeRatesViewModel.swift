@@ -39,6 +39,12 @@ final class ChangeRatesViewModel {
             }
         }
         
+        // Prevent multiple requests <60sec.
+        guard shouldSendRequest() else {
+            completionHandler(.success(false))
+            return
+        }
+        
         // Fetch change rates.
         networkService.fetchChangeRates(for: allCurrencies) { [weak self] result in
             switch result {
@@ -50,6 +56,21 @@ final class ChangeRatesViewModel {
                 completionHandler(.failure(error))
             }
         }
+    }
+    
+    private func shouldSendRequest() -> Bool {
+        
+        guard let lastRequestTimestamp = userDefaults.object(forKey: Constants.URLRequest.lastRequestTimestamp) as? TimeInterval else {
+            return true
+        }
+        
+        let now = Date().timeIntervalSince1970
+        
+        if now > lastRequestTimestamp + 60 {
+            return true
+        }
+        
+        return false
     }
     
     func searchTextDidChange(with searchText: String) {

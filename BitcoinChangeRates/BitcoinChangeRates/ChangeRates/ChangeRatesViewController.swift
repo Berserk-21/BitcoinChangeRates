@@ -9,7 +9,7 @@ import UIKit
 
 final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
-    var changeRateViewModel: ChangeRatesViewModel?
+    var changeRatesViewModel: ChangeRatesViewModel?
     
     // MARK: - Properties
     
@@ -84,11 +84,13 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
     @objc private func fetchData() {
         
-        changeRateViewModel = ChangeRatesViewModel(bundleService: BundleService(), networkService: NetworkService())
+        if changeRatesViewModel == nil {
+            changeRatesViewModel = ChangeRatesViewModel(bundleService: BundleService(), networkService: NetworkService())
+        }
         
         updateLoadingLayout(isLoading: true)
         
-        changeRateViewModel?.fetchData(completionHandler: { [weak self] result in
+        changeRatesViewModel?.fetchData(completionHandler: { [weak self] result in
             
             switch result {
             case .success(_):
@@ -119,7 +121,7 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         switch segue.identifier {
         case Constants.SegueIdentifiers.fromChangeRatesToAddCurrency:
             if let navigationController = segue.destination as? UINavigationController, let addCurrencyVC = navigationController.topViewController as? AddCurrencyViewController {
-                addCurrencyVC.viewModel = self.changeRateViewModel
+                addCurrencyVC.viewModel = self.changeRatesViewModel
             }
         default:
             break
@@ -132,13 +134,13 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChangeRatesTableViewCell.identifier, for: indexPath) as? ChangeRatesTableViewCell else { return UITableViewCell() }
         
-        guard indexPath.row < changeRateViewModel?.selectedChangeRates.count ?? 0 else {
+        guard indexPath.row < changeRatesViewModel?.selectedChangeRates.count ?? 0 else {
             #if DEBUG
             DebugLogService.log("changeRates index out of range")
             #endif
             return UITableViewCell() }
         
-        if let model = changeRateViewModel?.selectedChangeRates[indexPath.row] {
+        if let model = changeRatesViewModel?.selectedChangeRates[indexPath.row] {
             cell.configureCell(with: model)
         }
         
@@ -147,6 +149,6 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return changeRateViewModel?.selectedChangeRates.count ?? 0
+        return changeRatesViewModel?.selectedChangeRates.count ?? 0
     }
 }

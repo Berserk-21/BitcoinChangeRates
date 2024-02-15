@@ -48,6 +48,9 @@ final class NetworkService {
         }
         
         task.resume()
+        
+        let timestamp = Date().timeIntervalSince1970
+        userDefaults.setValue(timestamp, forKey: Constants.URLRequest.lastRequestTimestamp)
     }
     
     // Uses change rates and local currency data to build a list of ChangeRatesModel.
