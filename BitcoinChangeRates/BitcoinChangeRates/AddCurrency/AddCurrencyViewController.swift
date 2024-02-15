@@ -16,8 +16,6 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     @IBOutlet weak private var searchBar: UISearchBar!
     @IBOutlet weak private var tableView: UITableView!
     
-    private let userDefaults = UserDefaults.standard
-    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -43,8 +41,8 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     private func setupNavBar() {
         
-        let leftBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancel))
-        navigationItem.leftBarButtonItem = leftBarButton
+        let rightBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
+        navigationItem.rightBarButtonItem = rightBarButton
     }
     
     private func setupSearchBar() {
@@ -71,7 +69,7 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
     
     // MARK: - Actions
     
-    @objc private func didTapCancel() {
+    @objc private func didTapDone() {
         
         dismiss(animated: true)
     }
@@ -100,27 +98,9 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
         
         let item = currencies[indexPath.row]
         
-        updateUserDefaults(for: item)
-
         viewModel?.didSelect(item: item)
         
         reloadRow(at: indexPath)
-    }
-    
-    private func updateUserDefaults(for item: CurrencyModel) {
-        
-        if var userCurrencies = userDefaults.object(forKey: Constants.UserDefaults.selectedCurrencies) as? [String] {
-            
-            let isocode = item.isocode
-            
-            if item.isSelected {
-                userCurrencies.removeAll(where: { $0 == isocode })
-            } else {
-                userCurrencies.append(isocode)
-            }
-            
-            userDefaults.setValue(userCurrencies, forKey: Constants.UserDefaults.selectedCurrencies)
-        }
     }
     
     // MARK: - UISearchResultsUpdating

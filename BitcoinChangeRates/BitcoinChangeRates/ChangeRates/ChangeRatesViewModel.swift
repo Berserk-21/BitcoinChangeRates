@@ -22,6 +22,8 @@ final class ChangeRatesViewModel {
 
     var shouldFetchData: Bool = false
     
+    private let userDefaults = UserDefaults.standard
+    
     init(bundleService: BundleService, networkService: NetworkService) {
         self.bundleService = bundleService
         self.networkService = networkService
@@ -81,6 +83,23 @@ final class ChangeRatesViewModel {
             shouldFetchData = true
         }
         
+        updateUserDefaults(for: item)
+    }
+    
+    private func updateUserDefaults(for item: CurrencyModel) {
+        
+        if var userCurrencies = userDefaults.object(forKey: Constants.UserDefaults.selectedCurrencies) as? [String] {
+            
+            let isocode = item.isocode
+            
+            if item.isSelected {
+                userCurrencies.removeAll(where: { $0 == isocode })
+            } else {
+                userCurrencies.append(isocode)
+            }
+            
+            userDefaults.setValue(userCurrencies, forKey: Constants.UserDefaults.selectedCurrencies)
+        }
     }
     
 }
