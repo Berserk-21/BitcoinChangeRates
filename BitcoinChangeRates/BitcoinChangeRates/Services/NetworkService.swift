@@ -40,8 +40,10 @@ final class NetworkService {
             
             do {
                 let bitcoinPrices = try JSONDecoder().decode(BitcoinPricesModel.self, from: unwrappedData)
-                let changeRates = self.prepareChangeRates(for: bitcoinPrices, with: currencies)
-                completionHandler(.success(changeRates))
+                self.save(changeRates: bitcoinPrices.changeRates)
+                
+                let changeRatesModel = self.prepareChangeRates(for: bitcoinPrices, with: currencies)
+                completionHandler(.success(changeRatesModel))
             } catch {
                 completionHandler(.failure(error))
             }
@@ -53,6 +55,12 @@ final class NetworkService {
         userDefaults.setValue(timestamp, forKey: Constants.URLRequest.lastRequestTimestamp)
     }
     
+    // Store all change rates in UserDefaults
+    private func save(changeRates: [String: Double]) {
+        
+        self.userDefaults.setValue(changeRates, forKey: Constants.UserDefaults.changeRates)
+    }
+    
     // Uses change rates and local currency data to build a list of ChangeRatesModel.
     private func prepareChangeRates(for bitcoinPrices: BitcoinPricesModel, with currencies: [CurrencyModel]) -> [ChangeRatesModel] {
         
@@ -60,10 +68,10 @@ final class NetworkService {
         
         let selectedCurrencies = getSelectedCurrencies()
         
-        bitcoinPrices.bitcoin.forEach { element in
+        bitcoinPrices.changeRates.forEach { changeRate in
             
-            let isocode = element.key
-            let price = element.value
+            let isocode = changeRate.key
+            let price = changeRate.value
             let isSelected = selectedCurrencies.contains(isocode)
             
             if let currency = currencies.first(where: { $0.isocode == isocode }) {

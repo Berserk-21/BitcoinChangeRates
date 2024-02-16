@@ -26,7 +26,11 @@ struct ChangeRatesModel {
 
 struct BitcoinPricesModel: Decodable {
     
-    let bitcoin: [String: Double]
+    let changeRates: [String: Double]
+    
+    enum CodingKeys: String, CodingKey {
+        case changeRates = "bitcoin"
+    }
 }
 
 struct CurrencyModel: Decodable, Equatable {

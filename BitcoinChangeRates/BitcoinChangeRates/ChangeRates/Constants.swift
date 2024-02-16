@@ -29,6 +29,7 @@ enum Constants {
     
     enum UserDefaults {
         static let selectedCurrencies = "selectedCurrencies"
+        static let changeRates = "changeRates"
     }
     
     enum URLRequest {
