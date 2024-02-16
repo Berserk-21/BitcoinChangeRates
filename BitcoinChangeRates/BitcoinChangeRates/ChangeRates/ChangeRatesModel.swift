@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChangeRatesModel {
+struct ChangeRatesModel: Equatable {
     
     let name: String
     let isocode: String
