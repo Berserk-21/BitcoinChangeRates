@@ -1,12 +1,12 @@
 [
-  {"isocode": "usd", "name": "American dollar", "localeId": "en_US", "isSelected": false},
-  {"isocode": "aud", "name": "Australian dollar", "localeId": "en_AU", "isSelected": false},
-  {"isocode": "cad", "name": "Canadian dollar", "localeId": "en_CA", "isSelected": false},
-  {"isocode": "chf", "name": "Swiss Franc", "localeId": "de_CH", "isSelected": false},
-  {"isocode": "eur", "name": "Euro", "localeId": "fr_FR", "isSelected": false},
-  {"isocode": "gbp", "name": "Pound Sterling", "localeId": "en_GB", "isSelected": false},
-  {"isocode": "jpy", "name": "Yen", "localeId": "ja_JP", "isSelected": false},
-  {"isocode": "nzd", "name": "New Zealand dollar", "localeId": "en_NZ", "isSelected": false}
+  {"isocode": "usd", "name": "American dollar", "localeId": "en_US"},
+  {"isocode": "aud", "name": "Australian dollar", "localeId": "en_AU"},
+  {"isocode": "cad", "name": "Canadian dollar", "localeId": "en_CA"},
+  {"isocode": "chf", "name": "Swiss Franc", "localeId": "de_CH"},
+  {"isocode": "eur", "name": "Euro", "localeId": "fr_FR"},
+  {"isocode": "gbp", "name": "Pound Sterling", "localeId": "en_GB"},
+  {"isocode": "jpy", "name": "Yen", "localeId": "ja_JP"},
+  {"isocode": "nzd", "name": "New Zealand dollar", "localeId": "en_NZ"}
 ]
 
 

@@ -12,7 +12,7 @@ final class ChangeRatesViewModelTests: XCTestCase {
     
     var viewModel: ChangeRatesViewModel!
     
-    var mockCurrencies: [CurrencyModel]!
+    var mockChangeRates: [ChangeRatesModel] = []
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -20,8 +20,26 @@ final class ChangeRatesViewModelTests: XCTestCase {
         viewModel = ChangeRatesViewModel(bundleService: BundleService(), networkService: NetworkService())
         
         let currenciesData = loadMock(name: "currencies", extension: "json")
+        let bitcoinPricesData = loadMock(name: "bitcoinPrices", extension: "json")
+        
         do {
-            mockCurrencies = try JSONDecoder().decode([CurrencyModel].self, from: currenciesData)
+            let mockCurrencies = try JSONDecoder().decode([CurrencyModel].self, from: currenciesData)
+            let mockBitcoinPrices = try JSONDecoder().decode(BitcoinPricesModel.self, from: bitcoinPricesData)
+            let selectedCurrencies = Constants.URLRequest.defaultSelectedCurrency
+            
+            mockBitcoinPrices.changeRates.forEach { changeRate in
+                
+                let isocode = changeRate.key
+                let price = changeRate.value
+                let isSelected = selectedCurrencies.contains(isocode)
+                
+                if let currency = mockCurrencies.first(where: { $0.isocode == isocode }) {
+                    
+                    let changeRate = ChangeRatesModel(name: currency.name, isocode: currency.isocode, localeId: currency.localeId, price: price, isSelected: isSelected)
+                    mockChangeRates.append(changeRate)
+                }
+            }
+            
         } catch {
             DebugLogService.log(error)
         }
@@ -32,6 +50,8 @@ final class ChangeRatesViewModelTests: XCTestCase {
     }
     
     func testFetchData_success() {
+        
+        UserDefaults.standard.removeObject(forKey: Constants.URLRequest.lastRequestTimestamp)
         
         let expectation = self.expectation(description: "FetchData_success")
         
@@ -51,84 +71,79 @@ final class ChangeRatesViewModelTests: XCTestCase {
     
     func testFilter_emptySearchText() {
         
-        viewModel.filter(with: "")
+        viewModel.allChangeRates = mockChangeRates
+        viewModel.searchTextDidChange(with: "")
         
-        XCTAssertEqual(viewModel.filteredCurrencies.count, 0)
+        XCTAssertEqual(viewModel.filteredChangeRates.count, 0)
+        XCTAssertEqual(viewModel.allChangeRates.count, mockChangeRates.count)
     }
     
     func testFilter_nameSearchText() {
         
         let searchText = "dollar"
         
-        viewModel.allCurrencies = mockCurrencies
+        viewModel.allChangeRates = mockChangeRates
         
-        viewModel.filter(with: searchText)
-        let filteredCurrencies = viewModel.allCurrencies.filter({$0.name.contains(searchText)})
+        viewModel.searchTextDidChange(with: searchText)
+        let filteredChangeRates = viewModel.allChangeRates.filter({$0.name.contains(searchText)})
         
-        XCTAssertEqual(viewModel.filteredCurrencies.count, filteredCurrencies.count)
+        XCTAssertEqual(viewModel.filteredChangeRates.count, filteredChangeRates.count)
     }
     
     func testFilter_isocodeSearchText() {
         
         let searchText = "usd"
         
-        viewModel.allCurrencies = mockCurrencies
+        viewModel.allChangeRates = mockChangeRates
         
-        viewModel.filter(with: searchText)
+        viewModel.searchTextDidChange(with: searchText)
         
-        let filteredCurrencies = viewModel.allCurrencies.filter({$0.isocode.contains(searchText)})
+        let filteredChangeRates = viewModel.allChangeRates.filter({$0.isocode.contains(searchText)})
         
-        XCTAssertEqual(viewModel.filteredCurrencies.count, filteredCurrencies.count)
+        XCTAssertEqual(viewModel.filteredChangeRates.count, filteredChangeRates.count)
     }
     
-    func testGetCurrencies_all() {
-        
-        let searchText = ""
-        
-        viewModel.allCurrencies = mockCurrencies
-        
-        viewModel.filter(with: searchText)
-        
-        let currencies = viewModel.getCurrencies()
-        
-        XCTAssertEqual(currencies, viewModel.allCurrencies)
-    }
-    
-    func testGetCurrencies_filtered() {
+    func testFilterChangeRates_name() {
         
         let searchText = "dollar"
         
-        viewModel.allCurrencies = mockCurrencies
+        viewModel.allChangeRates = mockChangeRates
         
-        viewModel.filter(with: searchText)
+        viewModel.searchTextDidChange(with: searchText)
+                
+        let filteredChangeRates = mockChangeRates.filter( {$0.isocode.lowercased().contains(searchText.lowercased()) || $0.name.lowercased().contains(searchText.lowercased())} )
         
-        let currencies = viewModel.getCurrencies()
+        XCTAssertTrue(viewModel.filteredChangeRates.count == filteredChangeRates.count)
         
-        XCTAssertEqual(currencies, viewModel.filteredCurrencies)
+        viewModel.filteredChangeRates.forEach { changeRate in
+            XCTAssertTrue(filteredChangeRates.contains(where: { $0.isocode == changeRate.isocode } ))
+        }
     }
     
-    func testDidSelect_allCurrencies_toggle() {
+    func testDidSelect_toggleIsSelected() {
         
-        viewModel.allCurrencies = mockCurrencies
+        viewModel.allChangeRates = mockChangeRates
         
-        let randomElement = viewModel.allCurrencies.randomElement()!
+        let randomElement = viewModel.allChangeRates.randomElement()!
         
         let previousSelectedState = randomElement.isSelected
         
-        viewModel.shouldFetchData = false
         viewModel.didSelect(item: randomElement)
         
-        let selectedElement = viewModel.allCurrencies.first(where: {$0.isocode == randomElement.isocode })!
+        let selectedElement = viewModel.allChangeRates.first(where: {$0.isocode == randomElement.isocode })!
         
-        XCTAssertEqual(selectedElement.isSelected, !previousSelectedState)
-        XCTAssertTrue(viewModel.shouldFetchData)
+        let newSelectedState = selectedElement.isSelected
+        
+        XCTAssertEqual(newSelectedState, !previousSelectedState)
     }
     
     func testDidSelect_shouldFetchData() {
         
-        viewModel.allCurrencies = mockCurrencies
+        viewModel.allChangeRates = mockChangeRates
         
-        let randomElement = viewModel.allCurrencies.randomElement()!
+        var randomElement = viewModel.allChangeRates.randomElement()!
+        
+        randomElement.isSelected = false
         
         viewModel.shouldFetchData = false
         
@@ -137,4 +152,42 @@ final class ChangeRatesViewModelTests: XCTestCase {
         XCTAssertTrue(viewModel.shouldFetchData)
     }
     
+    func testDidUnSelect_shouldFetchData() {
+        
+        viewModel.allChangeRates = mockChangeRates
+        viewModel.selectedChangeRates = viewModel.allChangeRates.filter({ $0.isSelected })
+        
+        let randomElement = viewModel.allChangeRates.first(where: { $0.isSelected == true })!
+        
+        viewModel.shouldFetchData = false
+        
+        viewModel.didSelect(item: randomElement)
+        
+        XCTAssertTrue(viewModel.shouldFetchData)
+    }
+    
+    func testDidUnselect_ShouldNotFetchData() {
+        
+        var shouldSelect = true
+        
+        viewModel.allChangeRates = mockChangeRates.map({ changeRate in
+            var unselectedChangeRate = changeRate
+            unselectedChangeRate.isSelected = shouldSelect
+            if shouldSelect {
+                shouldSelect = false
+            }
+            return unselectedChangeRate
+        })
+        
+        let selectedItem = viewModel.allChangeRates.first(where: { $0.isSelected })!
+        
+        viewModel.shouldFetchData = false
+        
+        viewModel.didSelect(item: selectedItem)
+        
+        XCTAssertFalse(viewModel.shouldFetchData)
+    }
+    
+    // TODO: - Request conditions
+//    func testDidSelect_ShouldNotFetch60sec
 }
