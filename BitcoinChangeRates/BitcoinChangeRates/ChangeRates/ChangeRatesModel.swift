@@ -13,23 +13,28 @@ struct ChangeRatesModel {
     let isocode: String
     let localeId: String
     let price: Double
+    var isSelected: Bool
     
-    init(name: String, isocode: String, localeId: String, price: Double) {
+    init(name: String, isocode: String, localeId: String, price: Double, isSelected: Bool) {
         self.name = name
         self.isocode = isocode
         self.localeId = localeId
         self.price = price
+        self.isSelected = isSelected
     }
 }
 
 struct BitcoinPricesModel: Decodable {
     
-    let bitcoin: [String: Double]
+    let changeRates: [String: Double]
+    
+    enum CodingKeys: String, CodingKey {
+        case changeRates = "bitcoin"
+    }
 }
 
 struct CurrencyModel: Decodable, Equatable {
     let name: String
     let isocode: String
     let localeId: String
-    var isSelected: Bool
 }

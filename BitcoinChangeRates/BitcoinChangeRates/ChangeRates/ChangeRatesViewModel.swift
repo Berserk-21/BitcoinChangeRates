@@ -14,10 +14,11 @@ final class ChangeRatesViewModel {
     let bundleService: BundleService
     let networkService: NetworkService
     
-    var changeRates: [ChangeRatesModel] = []
+    var allChangeRates: [ChangeRatesModel] = []
+    var selectedChangeRates: [ChangeRatesModel] = []
+    var filteredChangeRates: [ChangeRatesModel] = []
     
-    var allCurrencies: [CurrencyModel] = []
-    var filteredCurrencies: [CurrencyModel] = []
+    private var allCurrencies: [CurrencyModel] = []
     private var searchText: String = ""
 
     var shouldFetchData: Bool = false
@@ -31,56 +32,92 @@ final class ChangeRatesViewModel {
     
     func fetchData(completionHandler: @escaping (Result<Bool, Error>) -> ()) {
         
-        bundleService.fetchLocalData { [weak self] currencies in
-            
-            self?.networkService.fetchData(with: currencies) { result in
-                
-                self?.allCurrencies = currencies
-                
-                switch result {
-                case .success(let changeRates):
-                    self?.changeRates = changeRates
-                    completionHandler(.success(true))
-                case .failure(let err):
-                    completionHandler(.failure(err))
-                }
+        // Initialize currencies data from Bundle.
+        if allCurrencies.isEmpty {
+            bundleService.fetchLocalData { allCurrencies in
+                self.allCurrencies = allCurrencies
+            }
+        }
+        
+        // Prevent multiple requests <60sec.
+        guard shouldSendRequest() else {
+            completionHandler(.success(false))
+            return
+        }
+        
+        // Fetch change rates.
+        networkService.fetchChangeRates(for: allCurrencies) { [weak self] result in
+            switch result {
+            case .success(let changeRates):
+                self?.allChangeRates = changeRates
+                self?.updateSelectedChangeRates()
+                completionHandler(.success(true))
+            case .failure(let error):
+                completionHandler(.failure(error))
             }
         }
     }
     
-    func filter(with searchText: String) {
+    private func shouldSendRequest() -> Bool {
+        
+        guard let lastRequestTimestamp = userDefaults.object(forKey: Constants.URLRequest.lastRequestTimestamp) as? TimeInterval else {
+            return true
+        }
+        
+        let now = Date().timeIntervalSince1970
+        
+        if now > lastRequestTimestamp + 60 {
+            return true
+        }
+        
+        return false
+    }
+    
+    func searchTextDidChange(with searchText: String) {
+        
+        filter(with: searchText)
+    }
+    
+    private func filter(with searchText: String) {
         
         self.searchText = searchText
         
         guard searchText.count > 0 else {
-            filteredCurrencies = []
+            filteredChangeRates = []
             return
         }
         
-        filteredCurrencies = allCurrencies.filter( {$0.isocode.lowercased().contains(searchText.lowercased()) || $0.name.lowercased().contains(searchText.lowercased())} ).sorted(by: { $0.isocode < $1.isocode })
+        filteredChangeRates = allChangeRates.filter( {$0.isocode.lowercased().contains(searchText.lowercased()) || $0.name.lowercased().contains(searchText.lowercased())} ).sorted(by: { $0.isocode < $1.isocode })
     }
     
-    func getCurrencies() -> [CurrencyModel] {
+    private func updateFilteredChangeRates() {
+        
+        filter(with: searchText)
+    }
+    
+    func getChangeRates() -> [ChangeRatesModel] {
         
         if searchText.isEmpty {
-            return allCurrencies
+            return allChangeRates
         } else {
-            return filteredCurrencies
+            return filteredChangeRates
         }
     }
     
-    func didSelect(item: CurrencyModel) {
+    func didSelectRowAt(indexPath: IndexPath) {
+        
+        didSelect(item: allChangeRates[indexPath.row])
+    }
+    
+    func didSelect(item: ChangeRatesModel) {
         
         guard isSelectable(item: item) else { return }
         
-        if let index = allCurrencies.firstIndex(where: { $0.isocode == item.isocode }) {
-            allCurrencies[index].isSelected.toggle()
+        if let index = allChangeRates.firstIndex(where: { $0.isocode == item.isocode }) {
+            allChangeRates[index].isSelected.toggle()
             
-            shouldFetchData = true
-        }
-        
-        if let filteredIndex = filteredCurrencies.firstIndex(where: { $0.isocode == item.isocode }) {
-            filteredCurrencies[filteredIndex].isSelected.toggle()
+            updateSelectedChangeRates()
+            updateFilteredChangeRates()
             
             shouldFetchData = true
         }
@@ -88,7 +125,7 @@ final class ChangeRatesViewModel {
         updateUserDefaults(for: item)
     }
     
-    private func isSelectable(item: CurrencyModel) -> Bool {
+    private func isSelectable(item: ChangeRatesModel) -> Bool {
         
         // An unselected item can always be selected
         if !item.isSelected {
@@ -96,7 +133,7 @@ final class ChangeRatesViewModel {
         }
         
         // A selected item can only be unselected if there are 2 selected items.
-        if allCurrencies.filter({ $0.isSelected }).count > 2 {
+        if selectedChangeRates.count > 1 {
             return true
         }
         
@@ -104,7 +141,12 @@ final class ChangeRatesViewModel {
         return false
     }
     
-    private func updateUserDefaults(for item: CurrencyModel) {
+    private func updateSelectedChangeRates() {
+        
+        selectedChangeRates = allChangeRates.filter({ $0.isSelected })
+    }
+    
+    private func updateUserDefaults(for item: ChangeRatesModel) {
         
         if var userCurrencies = userDefaults.object(forKey: Constants.UserDefaults.selectedCurrencies) as? [String] {
             

@@ -36,7 +36,7 @@ final class AddCurrencyTableViewCell: UITableViewCell {
     
     // MARK: - Custom Methods
     
-    func configure(at indexPath: IndexPath, with model: [CurrencyModel]) {
+    func configure(at indexPath: IndexPath, with model: [ChangeRatesModel]) {
         
         guard indexPath.row < model.count else { return }
         

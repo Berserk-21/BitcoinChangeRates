@@ -26,21 +26,21 @@ final class BitcoinPricesModelTests: XCTestCase {
     
     func test_EurPrice() {
         
-        let eurPrice = bitcoinPrices.bitcoin["eur"]
+        let eurPrice = bitcoinPrices.changeRates["eur"]
         
         XCTAssertEqual(eurPrice, 42485)
     }
     
     func test_AllPropertyNotEmpty() {
         
-        bitcoinPrices.bitcoin.forEach { (key, value) in
+        bitcoinPrices.changeRates.forEach { (key, value) in
             XCTAssertGreaterThan(key.count, 0)
         }
     }
     
     func test_PropertiesType() {
         
-        bitcoinPrices.bitcoin.forEach { (key, value) in
+        bitcoinPrices.changeRates.forEach { (key, value) in
             XCTAssert(type(of: key) == String.self)
             XCTAssert(type(of: value) == Double.self)
         }

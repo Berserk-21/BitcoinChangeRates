@@ -29,6 +29,7 @@ enum Constants {
     
     enum UserDefaults {
         static let selectedCurrencies = "selectedCurrencies"
+        static let changeRates = "changeRates"
     }
     
     enum URLRequest {
@@ -38,6 +39,7 @@ enum Constants {
         static let reloadText = "Reload"
         static let requestTimedOut = "Please check your network connection and try again."
         static let exceeded60secLimit = "Please wait 60 seconds to refresh price."
+        static let lastRequestTimestamp = "lastRequestTimestamp"
     }
     
     enum Notifications {
