@@ -106,7 +106,9 @@ final class ChangeRatesViewModel {
     
     func didSelectRowAt(indexPath: IndexPath) {
         
-        didSelect(item: allChangeRates[indexPath.row])
+        let model = searchText.isEmpty ? allChangeRates : filteredChangeRates
+        
+        didSelect(item: model[indexPath.row])
     }
     
     func didSelect(item: ChangeRatesModel) {

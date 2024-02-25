@@ -31,6 +31,12 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
         sendNotificationIfNeeded()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        resetSearchFilter()
+    }
+    
     // MARK: - Setup Layout
     
     private func setupLayout() {
@@ -67,6 +73,11 @@ final class AddCurrencyViewController: UIViewController, UITableViewDataSource, 
         if let shouldFetchData = viewModel?.shouldFetchData, shouldFetchData {
             NotificationCenter.default.post(name: NSNotification.Name(Constants.Notifications.shouldFetchData), object: nil)
         }
+    }
+    
+    private func resetSearchFilter() {
+        
+        viewModel?.searchTextDidChange(with: "")
     }
     
     // MARK: - Actions
