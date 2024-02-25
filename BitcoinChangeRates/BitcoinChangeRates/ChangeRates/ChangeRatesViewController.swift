@@ -19,15 +19,17 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak private var loadingView: LoadingView!
     @IBOutlet weak private var headerBottomSeparatorView: UIView!
     
+    private var tapBitcoinAmountGestureReconizer: UITapGestureRecognizer?
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupTapGesture()
         setupLayout()
         setupLoadingView()
         fetchData()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +39,21 @@ final class ChangeRatesViewController: UIViewController, UITableViewDataSource {
     }
     
     // MARK: - Setup Layout
+    
+    
+    private func setupTapGesture()
+    {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapBitcoinAmount))
+        
+        tapBitcoinAmountGestureReconizer = tapGesture
+        bitcoinAmountLabel.isUserInteractionEnabled = true
+        bitcoinAmountLabel.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func didTapBitcoinAmount()
+    {
+        self.performSegue(withIdentifier: Constants.SegueIdentifiers.fromChangeRatesToChangeBitcoinValue, sender: self)
+    }
     
     private func setupLayout() {
         
